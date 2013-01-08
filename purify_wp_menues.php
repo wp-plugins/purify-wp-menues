@@ -3,7 +3,7 @@
 Plugin Name: Purify WordPress Menues
 Plugin URI: http://stehle-internet.de/downloads/purify-wordpress-menues-plugin-informations-and-download/
 Description: The plugin 'Purify WordPress Menues' cleans up the HTML output of WordPress menues to only the CSS classes you want. This plugin deletes the CSS classes you do not need in a navigation menu and page menu. You can select and deselect in detail any CSS class Wordpress would add to menu items via wp_nav_menu() and wp_page_menu(). The default setting is to print only the CSS classes for the current menu item. If you deactivate the plugin, your settings remains. If you delete the plugin, your settings will be deleted, too.
-Version: 1.0
+Version: 1.1
 Author: Martin Stehle
 Author URI: http://stehle-internet.de/
 Author Email: m.stehle@gmx.de

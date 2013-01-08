@@ -88,7 +88,7 @@ msgstr ""
 
 #: purify_wp_menues.php:339
 #@ purify_wp_menues
-msgid "Print .current-menu-ancestor."
+msgid ".current-menu-ancestor"
 msgstr ""
 
 #: purify_wp_menues.php:340
@@ -98,7 +98,7 @@ msgstr ""
 
 #: purify_wp_menues.php:344
 #@ purify_wp_menues
-msgid "Print .current-menu-item."
+msgid ".current-menu-item"
 msgstr ""
 
 #: purify_wp_menues.php:345
@@ -108,7 +108,7 @@ msgstr ""
 
 #: purify_wp_menues.php:349
 #@ purify_wp_menues
-msgid "Print .current-menu-parent."
+msgid ".current-menu-parent"
 msgstr ""
 
 #: purify_wp_menues.php:350
@@ -118,7 +118,7 @@ msgstr ""
 
 #: purify_wp_menues.php:354
 #@ purify_wp_menues
-msgid "Print .current-{object}-ancestor."
+msgid ".current-{object}-ancestor"
 msgstr ""
 
 #: purify_wp_menues.php:355
@@ -128,7 +128,7 @@ msgstr ""
 
 #: purify_wp_menues.php:359
 #@ purify_wp_menues
-msgid "Print .current-{object}-parent."
+msgid ".current-{object}-parent"
 msgstr ""
 
 #: purify_wp_menues.php:360
@@ -138,7 +138,7 @@ msgstr ""
 
 #: purify_wp_menues.php:364
 #@ purify_wp_menues
-msgid "Print .current_page_item."
+msgid ".current_page_item"
 msgstr ""
 
 #: purify_wp_menues.php:365
@@ -148,7 +148,7 @@ msgstr ""
 
 #: purify_wp_menues.php:369
 #@ purify_wp_menues
-msgid "Print .current_page_parent."
+msgid ".current_page_parent"
 msgstr ""
 
 #: purify_wp_menues.php:370
@@ -158,7 +158,7 @@ msgstr ""
 
 #: purify_wp_menues.php:374
 #@ purify_wp_menues
-msgid "Print .current_page_ancestor."
+msgid ".current_page_ancestor"
 msgstr ""
 
 #: purify_wp_menues.php:375
@@ -168,7 +168,7 @@ msgstr ""
 
 #: purify_wp_menues.php:379
 #@ purify_wp_menues
-msgid "Print .current-{type}-ancestor."
+msgid ".current-{type}-ancestor"
 msgstr ""
 
 #: purify_wp_menues.php:380
@@ -178,7 +178,7 @@ msgstr ""
 
 #: purify_wp_menues.php:384
 #@ purify_wp_menues
-msgid "Print .current-{type}-parent."
+msgid ".current-{type}-parent"
 msgstr ""
 
 #: purify_wp_menues.php:385
@@ -188,7 +188,7 @@ msgstr ""
 
 #: purify_wp_menues.php:389
 #@ purify_wp_menues
-msgid "Print .menu-item."
+msgid ".menu-item"
 msgstr ""
 
 #: purify_wp_menues.php:390
@@ -198,7 +198,7 @@ msgstr ""
 
 #: purify_wp_menues.php:394
 #@ purify_wp_menues
-msgid "Print .menu-item-home."
+msgid ".menu-item-home"
 msgstr ""
 
 #: purify_wp_menues.php:395
@@ -208,7 +208,7 @@ msgstr ""
 
 #: purify_wp_menues.php:399
 #@ purify_wp_menues
-msgid "Print .menu-item-{id}."
+msgid ".menu-item-{id}"
 msgstr ""
 
 #: purify_wp_menues.php:400
@@ -218,7 +218,7 @@ msgstr ""
 
 #: purify_wp_menues.php:404
 #@ purify_wp_menues
-msgid "Print .menu-item-object-{object}."
+msgid ".menu-item-object-{object}"
 msgstr ""
 
 #: purify_wp_menues.php:405
@@ -228,7 +228,7 @@ msgstr ""
 
 #: purify_wp_menues.php:409
 #@ purify_wp_menues
-msgid "Print .menu-item-object-category."
+msgid ".menu-item-object-category"
 msgstr ""
 
 #: purify_wp_menues.php:410
@@ -238,7 +238,7 @@ msgstr ""
 
 #: purify_wp_menues.php:414
 #@ purify_wp_menues
-msgid "Print .menu-item-object-{custom}."
+msgid ".menu-item-object-{custom}"
 msgstr ""
 
 #: purify_wp_menues.php:415
@@ -248,7 +248,7 @@ msgstr ""
 
 #: purify_wp_menues.php:419
 #@ purify_wp_menues
-msgid "Print .menu-item-object-page."
+msgid ".menu-item-object-page"
 msgstr ""
 
 #: purify_wp_menues.php:420
@@ -258,7 +258,7 @@ msgstr ""
 
 #: purify_wp_menues.php:424
 #@ purify_wp_menues
-msgid "Print .menu-item-object-tag."
+msgid ".menu-item-object-tag"
 msgstr ""
 
 #: purify_wp_menues.php:425
@@ -268,7 +268,7 @@ msgstr ""
 
 #: purify_wp_menues.php:429
 #@ purify_wp_menues
-msgid "Print .menu-item-type-post_type."
+msgid ".menu-item-type-post_type"
 msgstr ""
 
 #: purify_wp_menues.php:430
@@ -278,7 +278,7 @@ msgstr ""
 
 #: purify_wp_menues.php:434
 #@ purify_wp_menues
-msgid "Print .menu-item-type-taxonomy."
+msgid ".menu-item-type-taxonomy"
 msgstr ""
 
 #: purify_wp_menues.php:435
@@ -288,7 +288,7 @@ msgstr ""
 
 #: purify_wp_menues.php:439
 #@ purify_wp_menues
-msgid "Print .page_item."
+msgid ".page_item"
 msgstr ""
 
 #: purify_wp_menues.php:440
@@ -298,7 +298,7 @@ msgstr ""
 
 #: purify_wp_menues.php:444
 #@ purify_wp_menues
-msgid "Print .page-item-{id}."
+msgid ".page-item-{id}"
 msgstr ""
 
 #: purify_wp_menues.php:445

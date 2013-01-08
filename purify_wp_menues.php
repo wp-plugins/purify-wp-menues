@@ -43,6 +43,15 @@ class Purify_WP_Menues {
 	* @uses    $stored_settings
 	*/
 	public function init_execution () {
+		// load options once. If the options are not in the DB return an empty array
+		self::$stored_settings = get_option( self::$settings_db_slug );
+		/**
+		* to do: 
+		* What to do if 
+		* maybe the plugin was activated successfully and
+		* maybe add_option() in save_default_settings() had worked
+		* but get_option() would return FALSE?
+		*/
 		// Admin area
 		if ( is_admin() ) {
 			add_action( 'admin_init', array( __CLASS__, 'load_language' ) );
@@ -55,18 +64,11 @@ class Purify_WP_Menues {
 		} else {
 			// add the reasons why you have installed this plugin
 			add_filter( 'nav_menu_css_class', array( __CLASS__, 'purify_menu_item_classes' ), 10, 1 );
-			add_filter( 'nav_menu_item_id',   array( __CLASS__, 'purify_menu_item_id' ), 10, 1 );
 			add_filter( 'page_css_class',     array( __CLASS__, 'purify_page_item_classes' ), 10, 1 );
+			if ( 0 == self::$stored_settings['pwpm_print_menu_item_id'] ) {
+				add_filter( 'nav_menu_item_id',   array( __CLASS__, 'purify_menu_item_id' ), 10, 0 );
+			}
 		} // end if()
-		// load options once. If the options are not in the DB return an empty array
-		self::$stored_settings = get_option( self::$settings_db_slug );
-		/**
-		* to do: 
-		* What to do if 
-		* maybe the plugin was activated successfully and
-		* maybe add_option() in save_default_settings() had worked
-		* but get_option() would return FALSE?
-		*/
 	} // end init_execution()
 
 	/* 
@@ -316,7 +318,7 @@ class Purify_WP_Menues {
 		// set form options strings
 		$options_values = array(
 			'pwpm_print_menu_item_id' => array(
-				'title'   => __( 'Print #menu-item-{id}.', self::$text_domain_slug ),
+				'title'   => __( '#menu-item-{id}', self::$text_domain_slug ),
 				'label'   => __( 'The id of the menu item is added to every menu item of navigation memues.', self::$text_domain_slug ),
 				'section' => $section_suffix.'1'
 			),
@@ -331,112 +333,112 @@ class Purify_WP_Menues {
 				'section' => $section_suffix.'1'
 			),
 			'pwpm_print_current_menu_ancestor' => array(
-				'title'   => __( 'Print .current-menu-ancestor.', self::$text_domain_slug ),
+				'title'   => __( '.current-menu-ancestor', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to a hierarchical ancestor of the currently rendered page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'4'
 			),
 			'pwpm_print_current_menu_item' => array(
-				'title'   => __( 'Print .current-menu-item.', self::$text_domain_slug ),
+				'title'   => __( '.current-menu-item', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to the currently rendered page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'2'
 			),
 			'pwpm_print_current_menu_parent' => array(
-				'title'   => __( 'Print .current-menu-parent.', self::$text_domain_slug ),
+				'title'   => __( '.current-menu-parent', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to the hierarchical parent of the currently rendered page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'3'
 			),
 			'pwpm_print_current_object_any_ancestor' => array(
-				'title'   => __( 'Print .current-{object}-ancestor.', self::$text_domain_slug ),
+				'title'   => __( '.current-{object}-ancestor', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to a hierachical ancestor of the currently rendered object, where {object} corresponds to the the value used for .menu-item-object-{object}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'4'
 			),
 			'pwpm_print_current_object_any_parent' => array(
-				'title'   => __( 'Print .current-{object}-parent.', self::$text_domain_slug ),
+				'title'   => __( '.current-{object}-parent', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to the hierachical parent of the currently rendered object, where {object} corresponds to the the value used for .menu-item-object-{object}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'3'
 			),
 			'pwpm_print_current_page_item' => array(
-				'title'   => __( 'Print .current_page_item.', self::$text_domain_slug ),
+				'title'   => __( '.current_page_item', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to page menu items that correspond to the currently rendered static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_current_page_parent' => array(
-				'title'   => __( 'Print .current_page_parent.', self::$text_domain_slug ),
+				'title'   => __( '.current_page_parent', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to page menu items that correspond to the hierarchical parent of the currently rendered static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_current_page_ancestor' => array(
-				'title'   => __( 'Print .current_page_ancestor.', self::$text_domain_slug ),
+				'title'   => __( '.current_page_ancestor', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to page menu items that correspond to a hierarchical ancestor of the currently rendered static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_current_type_any_ancestor' => array(
-				'title'   => __( 'Print .current-{type}-ancestor.', self::$text_domain_slug ),
+				'title'   => __( '.current-{type}-ancestor', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to a hierachical ancestor of the currently rendered type, where {type} corresponds to the the value used for .menu-item-type-{type}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'4'
 			),
 			'pwpm_print_current_type_any_parent' => array(
-				'title'   => __( 'Print .current-{type}-parent.', self::$text_domain_slug ),
+				'title'   => __( '.current-{type}-parent', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to the hierachical parent of the currently rendered type, where {type} corresponds to the the value used for .menu-item-type-{type}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'3'
 			),
 			'pwpm_print_menu_item' => array(
-				'title'   => __( 'Print .menu-item.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to every menu item.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_home' => array(
-				'title'   => __( 'Print .menu-item-home.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-home', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to the site front page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'5'
 			),
 			'pwpm_print_menu_item_id_as_class' => array(
-				'title'   => __( 'Print .menu-item-{id}.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-{id}', self::$text_domain_slug ),
 				'label'   => __( 'This class with the item id is added to every menu item.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_any' => array(
-				'title'   => __( 'Print .menu-item-object-{object}.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-object-{object}', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to every menu item, where {object} is either a post type or a taxonomy.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_category' => array(
-				'title'   => __( 'Print .menu-item-object-category.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-object-category', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to a category.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_custom' => array(
-				'title'   => __( 'Print .menu-item-object-{custom}.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-object-{custom}', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to a custom post type or a custom taxonomy.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_page' => array(
-				'title'   => __( 'Print .menu-item-object-page.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-object-page', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to static pages.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_tag' => array(
-				'title'   => __( 'Print .menu-item-object-tag.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-object-tag', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to a tag.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_type_post_type' => array(
-				'title'   => __( 'Print .menu-item-type-post_type.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-type-post_type', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to post types, i.e. static pages or custom post types.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_type_taxonomy' => array(
-				'title'   => __( 'Print .menu-item-type-taxonomy.', self::$text_domain_slug ),
+				'title'   => __( '.menu-item-type-taxonomy', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to menu items that correspond to taxonomies, i.e. categories, tags, or custom taxonomies.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_page_item' => array(
-				'title'   => __( 'Print .page_item.', self::$text_domain_slug ),
+				'title'   => __( '.page_item', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to page menu items that correspond to a static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_page_item_id' => array(
-				'title'   => __( 'Print .page-item-{id}.', self::$text_domain_slug ),
+				'title'   => __( '.page-item-{id}', self::$text_domain_slug ),
 				'label'   => __( 'This class is added to page menu items that correspond to a static page, where ID is the static page ID.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			)
@@ -810,16 +812,11 @@ class Purify_WP_Menues {
 	*
 	* @since   1.0
 	*
-	* @param   string    $menu_item_id    String wp_nav_menu() builded for a single item
 	* @uses    $stored_settings
 	* @return  string                     Empty string if param should not be returned, else the param itself
 	*/
-	public function purify_menu_item_id ( $menu_item_id ) {
-		if ( self::$stored_settings['pwpm_print_menu_item_id'] ) {
-			return $menu_item_id;
-		} else {
-			return '';
-		}
+	public function purify_menu_item_id () {
+		return '';
 	} // end purify_menu_item_id()
 
 	/**

@@ -3,7 +3,7 @@ Contributors: Hinjiriyo
 Tags: plugin, navigation, menu, menues, navigation menues, page menues, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SBF76TCGTRNX2
@@ -101,10 +101,19 @@ If you want to contribute a translation of the plugin in your language it would 
 
 == Changelog ==
 
+= 1.1 =
+* Improved performance: Hooks in to 'nav_menu_item_id' only when desired instead of every time
+* Some improved translation into german
+* Improved labeling on options page
+* Refined POT file
+
 = 1.0 =
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 1.1 =
+* Improved performance and german translation
 
 = 1.0 =
 No upgrade neccessary.

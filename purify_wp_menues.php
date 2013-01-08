@@ -38,6 +38,7 @@ class Purify_WP_Menues {
 	* Call needed functions at plugin start
 	*
 	* @since   1.0
+	* @change  1.1
 	* @uses    set_global_vars()
 	* @uses    $settings_db_slug
 	* @uses    $stored_settings
@@ -281,6 +282,7 @@ class Purify_WP_Menues {
 	* Run on admin_init()
 	*
 	* @since   1.0
+	* @change  1.1
 	* @uses    $text_domain_slug
 	* @uses    $main_options_page_slug
 	* @uses    $plugin_options_names
@@ -811,6 +813,7 @@ class Purify_WP_Menues {
 	* Clean the id attribute of items in navigation menues
 	*
 	* @since   1.0
+	* @change  1.1
 	*
 	* @uses    $stored_settings
 	* @return  string                     Empty string if param should not be returned, else the param itself

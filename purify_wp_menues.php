@@ -3,7 +3,7 @@
 Plugin Name: Purify WordPress Menues
 Plugin URI: http://stehle-internet.de/downloads/purify-wordpress-menues-plugin-informations-and-download/
 Description: The plugin 'Purify WordPress Menues' cleans up the HTML output of WordPress menues to only the CSS classes you want. This plugin deletes the CSS classes you do not need in a navigation menu and page menu. You can select and deselect in detail any CSS class Wordpress would add to menu items via wp_nav_menu() and wp_page_menu(). The default setting is to print only the CSS classes for the current menu item. If you deactivate the plugin, your settings remains. If you delete the plugin, your settings will be deleted, too.
-Version: 1.1
+Version: 1.2
 Author: Martin Stehle
 Author URI: http://stehle-internet.de/
 Author Email: m.stehle@gmx.de
@@ -25,7 +25,7 @@ class Purify_WP_Menues {
 	*
 	* @since   1.0
 	*/
-	private static $plugin_version = '1.0';
+	private static $plugin_version = '1.2';
 	private static $main_options_page_slug;
 	private static $options_pages_slug;
 	private static $plugin_options_names;
@@ -38,7 +38,6 @@ class Purify_WP_Menues {
 	* Call needed functions at plugin start
 	*
 	* @since   1.0
-	* @change  1.1
 	* @uses    set_global_vars()
 	* @uses    $settings_db_slug
 	* @uses    $stored_settings
@@ -282,7 +281,6 @@ class Purify_WP_Menues {
 	* Run on admin_init()
 	*
 	* @since   1.0
-	* @change  1.1
 	* @uses    $text_domain_slug
 	* @uses    $main_options_page_slug
 	* @uses    $plugin_options_names
@@ -321,7 +319,7 @@ class Purify_WP_Menues {
 		$options_values = array(
 			'pwpm_print_menu_item_id' => array(
 				'title'   => __( '#menu-item-{id}', self::$text_domain_slug ),
-				'label'   => __( 'The id of the menu item is added to every menu item of navigation memues.', self::$text_domain_slug ),
+				'label'   => __( 'The id of the menu item is added to every menu item of navigation menues.', self::$text_domain_slug ),
 				'section' => $section_suffix.'1'
 			),
 			'pwpm_backward_compatibility_with_wp_page_menu' => array(
@@ -813,7 +811,6 @@ class Purify_WP_Menues {
 	* Clean the id attribute of items in navigation menues
 	*
 	* @since   1.0
-	* @change  1.1
 	*
 	* @uses    $stored_settings
 	* @return  string                     Empty string if param should not be returned, else the param itself

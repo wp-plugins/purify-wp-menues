@@ -1,25 +1,25 @@
-=== Purify WordPress Menues ===
+=== Purify WordPress Menus ===
 Contributors: Hinjiriyo
-Tags: plugin, navigation, menu, menues, navigation menues, page menues, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
+Tags: plugin, navigation, menu, menus, navigation menus, page menus, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 1.2
+Tested up to: 3.8
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SBF76TCGTRNX2
 
-The plugin 'Purify WordPress Menues' slims down the HTML output of WordPress menues to only the CSS classes and ID attributes you want.
+The plugin 'Purify WordPress Menus' slims down the HTML output of WordPress menus to only the CSS classes and ID attributes you want.
 
 == Description ==
 
 = Effects =
 
-* 'Purify WordPress Menues' refines the HTML output of both navigation menues and page menues. It filters the output of the WordPress core functions wp_nav_menu() and wp_page_menu().
-* This plugin deletes the CSS classes you do not need in a navigation menu and page menu. It slims down the HTML code of Wordpress menues to the only neccessary CSS classes you want for your theme.
+* 'Purify WordPress Menus' refines the HTML output of both navigation menus and page menus. It filters the output of the WordPress core functions wp_nav_menu() and wp_page_menu().
+* This plugin deletes the CSS classes you do not need in a navigation menu and page menu. It slims down the HTML code of Wordpress menus to the only neccessary CSS classes you want for your theme.
 * This plugin deletes the ID attribute of each menu item. In most cases the ID of every menu item is not needed.
 * Menu items which are parents of the current item will not be classified as ancestors additionally. The output of class="current-menu-ancestor current-menu-parent" is reduced to class="current-menu-parent".
-* This plugin filters out the old CSS classes of page menues in navigation menues. This does not effect the output in page menues.
-* The visual appereance of menues in the frontend remains unchanged in most cases. If you should see an undesirable visual effect to the menues in your theme you can activate the needed CSS classes on the plugin's options page.
+* This plugin filters out the old CSS classes of page menus in navigation menus. This does not effect the output in page menus.
+* The visual appereance of menus in the frontend remains unchanged in most cases. If you should see an undesirable visual effect to the menus in your theme you can activate the needed CSS classes on the plugin's options page.
 
 = Highly Configurable =
 
@@ -27,7 +27,7 @@ The plugin 'Purify WordPress Menues' slims down the HTML output of WordPress men
 * You can select and deselect in detail any CSS class Wordpress would add to menu items via wp_nav_menu() and wp_page_menu() and you need for your theme.
 * You can control whether the id attribute of each navigation menu item is printed out or not.
 * You can control whether parent items will be additionally classified as ancestors item or not. You can activate to print out both classes on parent items or just parents classes.
-* You can control whether navigation menues will be additionally classified with the older page menu classes for compatibility or not.
+* You can control whether navigation menus will be additionally classified with the older page menu classes for compatibility or not.
 * If you deactivate the plugin, your settings remains.
 * If you delete the plugin via the WordPress 'Plugin' menu, your settings will be deleted, too. No useless option remains in the WordPress database.
 
@@ -46,23 +46,23 @@ The plugin 'Purify WordPress Menues' slims down the HTML output of WordPress men
 3. Upload the directory 'purify-wp-menues' with all its content per FTP to your '/wp-content/plugins/' directory.
 4. Go to the 'Plugins' page in the admin panel of your WordPress site.
 5. Activate the plugin through the 'Plugins' menu in WordPress.
-6. If you want you can refine the plugin's output on the option page 'Purify WP Menues'. You will find the page under 'Settings' in the admin panel.
+6. If you want you can refine the plugin's output on the option page 'Purify WP Menus'. You will find the page under 'Settings' in the admin panel.
 
 == Frequently Asked Questions ==
 
-= Does the plugin take effects on both navigation menues and page menues? =
+= Does the plugin take effects on both navigation menus and page menus? =
 
 Yes, it does.
 
-= Does the plugin take effects on the visual appereance of menues? =
+= Does the plugin take effects on the visual appeareance of menus? =
 
 Short answer: Normally not and if yes, you can take control of it.
 
-Long answer: The default settings are to output only the CSS class for the current active menu item. If the theme's CSS uses also the other CSS classes and/or item ID attribute you will notice some undesirable visual effects on menues. In this case just find out which classes and/or IDs the theme uses and activate them via the plugin's options page until the effects disappear.
+Long answer: The default settings are to output only the CSS class for the current active menu item. If the theme's CSS uses also the other CSS classes and/or item ID attribute you will notice some undesirable visual effects on menus. In this case just find out which classes and/or IDs the theme uses and activate them via the plugin's options page until the effects disappear.
 
 = What are the default settings of this plugin? =
 
-After activating the plugin deletes the id attributes an all CSS classes on every menue item except the CSS classes ".current-menu-item" in navigation menues and ".current_page_item" in page menues.
+After activating the plugin deletes the id attributes an all CSS classes on every menue item except the CSS classes ".current-menu-item" in navigation menus and ".current_page_item" in page menus.
 
 = What happens with my settings if I would deactivate the plugin through the 'Plugins' menu in WordPress? =
 
@@ -76,13 +76,13 @@ Your settings will be deleted, too. In other words: There would not remain any u
 
 Yes. It does this way as default. You can activate the output of every menu item's id on the plugin's options page.
 
-= Why is in page menues still the empty attribute ' class=""' at every menu item? =
+= Why is in page menus still the empty attribute ' class=""' at every menu item? =
 
-Normally, if you deselect every checkbox for page menues on the plugin's options page no class attribute should be there in page menues. But the WordPress files does not offer a gentle way to suppress the class attribute if it has no values. The plugin saves time and ressources by not trying an own way. If you would have a trick for deleting the empty class attibute with little effort please tell me about it.
+Normally, if you deselect every checkbox for page menus on the plugin's options page no class attribute should be there in page menus. But the WordPress files does not offer a gentle way to suppress the class attribute if it has no values. The plugin saves time and ressources by not trying an own way. If you would have a trick for deleting the empty class attibute with little effort please tell me about it.
 
 = Which languages does the plugin support? =
 
-Actually this languages are supported:
+Actually these languages are supported:
 
 * English
 * German
@@ -101,6 +101,12 @@ If you want to contribute a translation of the plugin in your language it would 
 
 == Changelog ==
 
+= 1.3 =
+* Added 'static' property to some functions to prevent warnings at strict error level
+* Removed deprecated use of screen_icon()
+* Corrected typo 'menues' to 'menus'
+* Checked compatibilty with WP 3.8
+
 = 1.2 =
 * Fixed a typo
 * Added spanish translation. Thank you, Hector!
@@ -115,6 +121,9 @@ If you want to contribute a translation of the plugin in your language it would 
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 1.3 =
+* Added slight corrections
 
 = 1.2 =
 * Added spanish translation. Thank you, Hector!

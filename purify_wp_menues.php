@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Purify WordPress Menues
+Plugin Name: Purify WordPress Menus
 Plugin URI: http://stehle-internet.de/downloads/purify-wordpress-menues-plugin-informations-and-download/
-Description: The plugin 'Purify WordPress Menues' cleans up the HTML output of WordPress menues to only the CSS classes you want. This plugin deletes the CSS classes you do not need in a navigation menu and page menu. You can select and deselect in detail any CSS class Wordpress would add to menu items via wp_nav_menu() and wp_page_menu(). The default setting is to print only the CSS classes for the current menu item. If you deactivate the plugin, your settings remains. If you delete the plugin, your settings will be deleted, too.
-Version: 1.2
+Description: The plugin 'Purify WordPress Menus' cleans up the HTML output of WordPress menus to only the CSS classes you want. This plugin deletes the CSS classes you do not need in a navigation menu and page menu. You can select and deselect in detail any CSS class Wordpress would add to menu items via wp_nav_menu() and wp_page_menu(). The default setting is to print only the CSS classes for the current menu item. If you deactivate the plugin, your settings remains. If you delete the plugin, your settings will be deleted, too.
+Version: 1.3
 Author: Martin Stehle
 Author URI: http://stehle-internet.de/
 Author Email: m.stehle@gmx.de
@@ -13,7 +13,7 @@ Requirements: WordPress >= 3.0
 
 */
 
-class Purify_WP_Menues {
+class Purify_WP_Menus {
 	/*
 		=================================================================================
 		Construct
@@ -25,14 +25,14 @@ class Purify_WP_Menues {
 	*
 	* @since   1.0
 	*/
-	private static $plugin_version = '1.2';
+	private static $plugin_version = '1.3';
 	private static $main_options_page_slug;
 	private static $options_pages_slug;
 	private static $plugin_options_names;
 	private static $settings_fields_slug;
 	private static $stored_settings;
 	private static $settings_db_slug = 'purify_wp_menu_options_set';
-	private static $text_domain_slug = 'purify_wp_menues';
+	private static $text_domain_slug = 'purify_wp_menus';
 
 	/**
 	* Call needed functions at plugin start
@@ -42,7 +42,7 @@ class Purify_WP_Menues {
 	* @uses    $settings_db_slug
 	* @uses    $stored_settings
 	*/
-	public function init_execution () {
+	public static function init_execution () {
 		// load options once. If the options are not in the DB return an empty array
 		self::$stored_settings = get_option( self::$settings_db_slug );
 		/**
@@ -116,7 +116,7 @@ class Purify_WP_Menues {
 		// stop WP request and display the message with backlink. Is there a proper way than wp_die()?
 		wp_die( 
 			// message in browser viewport
-			sprintf( '<p>%s</p>', __( 'The plugin Purify WordPress Menues requires WordPress version 3.0.0 or higher. Therefore, WordPress did not activate it. If you want to use this plugin update the Wordpress files to the latest version.', self::$text_domain_slug ) ),
+			sprintf( '<p>%s</p>', __( 'The plugin Purify WordPress Menus requires WordPress version 3.0.0 or higher. Therefore, WordPress did not activate it. If you want to use this plugin update the Wordpress files to the latest version.', self::$text_domain_slug ) ),
 			// title in title tag
 			'Wordpress &rsaquo; Plugin Activation Error', 
 			array( 
@@ -137,7 +137,7 @@ class Purify_WP_Menues {
 	* @uses    $text_domain_slug
 	* @uses    $plugin_options_names
 	*/
-	private function set_global_vars () {
+	private static function set_global_vars () {
 		// scalar variables
 		self::$main_options_page_slug = 'purify_wp_menu_options_page';
 		self::$settings_fields_slug = 'purify_wp_menu_options_group';
@@ -204,7 +204,7 @@ class Purify_WP_Menues {
 		* // test if the options are stored successfully
 		* if ( false === get_option( self::$settings_db_slug ) ) {
 		* 	// warn if there is something wrong with the options
-		* 	something like: printf( '<div class="error"><p>%s</p></div>', __( 'The settings for plugin Purify WP Menues are not stored in the database. Is the database server ok?', 'purify_wp_menues' ) );
+		* 	something like: printf( '<div class="error"><p>%s</p></div>', __( 'The settings for plugin Purify WP Menus are not stored in the database. Is the database server ok?', 'purify_wp_menus' ) );
 		* }
 		*/
 	} // end save_default_settings()
@@ -217,12 +217,12 @@ class Purify_WP_Menues {
 	* @uses    $options_pages_slug
 	* @uses    $text_domain_slug
 	*/
-	public function add_settings_page () {
+	public static function add_settings_page () {
 		self::$options_pages_slug = add_options_page(
 			// text to be displayed in the title tags of the page
-			__( 'Purify WP Menues Options', self::$text_domain_slug ),
+			__( 'Purify WP Menus Options', self::$text_domain_slug ),
 			// text to be used for the menu
-			'Purify WP Menues',
+			'Purify WP Menus',
 			// capability required for this menu to be displayed to the user
 			'manage_options',
 			// slug name to refer to this menu by (if there would be options sub pages ...)
@@ -241,15 +241,14 @@ class Purify_WP_Menues {
 	* @uses    $settings_fields_slug
 	* @uses    $main_options_page_slug
 	*/
-	public function print_main_options_form () {
+	public static function print_main_options_form () {
 		if ( ! current_user_can( 'manage_options' ) )  {
 			// use WordPress standard message for this case
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
 		?>
 		<div class="wrap">
-			<div id="icon-options-general" class="icon32"></div>
-			<h2><?php _e( 'Purify WP Menues Options', self::$text_domain_slug ); ?></h2>
+			<h2><?php _e( 'Purify WP Menus Options', self::$text_domain_slug ); ?></h2>
 			<form method="post" action="options.php">
 				<?php settings_fields( self::$settings_fields_slug ); ?>
 				<?php do_settings_sections( self::$main_options_page_slug ); ?>
@@ -287,7 +286,7 @@ class Purify_WP_Menues {
 	* @uses    $settings_fields_slug
 	* @uses    $settings_db_slug
 	*/
-	public function register_options () {
+	public static function register_options () {
 		$section_suffix = 'pwpm_section_';
 		// add form sections headings, order by appereance
 		$sections_values = array(
@@ -318,13 +317,13 @@ class Purify_WP_Menues {
 		// set form options strings
 		$options_values = array(
 			'pwpm_print_menu_item_id' => array(
-				'title'   => __( '#menu-item-{id}', self::$text_domain_slug ),
-				'label'   => __( 'The id of the menu item is added to every menu item of navigation menues.', self::$text_domain_slug ),
+				'title'   => '#menu-item-{id}',
+				'label'   => __( 'The id of the menu item is added to every menu item of navigation menus.', self::$text_domain_slug ),
 				'section' => $section_suffix.'1'
 			),
 			'pwpm_backward_compatibility_with_wp_page_menu' => array(
 				'title'   => __( 'Maintain backward compatibility with wp_page_menu().', self::$text_domain_slug ),
-				'label'   => __( 'Adds the CSS classes of page menues to navigation menues.', self::$text_domain_slug ),
+				'label'   => __( 'Adds the CSS classes of page menus to navigation menus.', self::$text_domain_slug ),
 				'section' => $section_suffix.'1'
 			),
 			'pwpm_do_not_print_parent_as_ancestor' => array(
@@ -333,112 +332,112 @@ class Purify_WP_Menues {
 				'section' => $section_suffix.'1'
 			),
 			'pwpm_print_current_menu_ancestor' => array(
-				'title'   => __( '.current-menu-ancestor', self::$text_domain_slug ),
+				'title'   => '.current-menu-ancestor',
 				'label'   => __( 'This class is added to menu items that correspond to a hierarchical ancestor of the currently rendered page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'4'
 			),
 			'pwpm_print_current_menu_item' => array(
-				'title'   => __( '.current-menu-item', self::$text_domain_slug ),
+				'title'   => '.current-menu-item',
 				'label'   => __( 'This class is added to menu items that correspond to the currently rendered page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'2'
 			),
 			'pwpm_print_current_menu_parent' => array(
-				'title'   => __( '.current-menu-parent', self::$text_domain_slug ),
+				'title'   => '.current-menu-parent',
 				'label'   => __( 'This class is added to menu items that correspond to the hierarchical parent of the currently rendered page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'3'
 			),
 			'pwpm_print_current_object_any_ancestor' => array(
-				'title'   => __( '.current-{object}-ancestor', self::$text_domain_slug ),
+				'title'   => '.current-{object}-ancestor',
 				'label'   => __( 'This class is added to menu items that correspond to a hierachical ancestor of the currently rendered object, where {object} corresponds to the the value used for .menu-item-object-{object}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'4'
 			),
 			'pwpm_print_current_object_any_parent' => array(
-				'title'   => __( '.current-{object}-parent', self::$text_domain_slug ),
+				'title'   => '.current-{object}-parent',
 				'label'   => __( 'This class is added to menu items that correspond to the hierachical parent of the currently rendered object, where {object} corresponds to the the value used for .menu-item-object-{object}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'3'
 			),
 			'pwpm_print_current_page_item' => array(
-				'title'   => __( '.current_page_item', self::$text_domain_slug ),
+				'title'   => '.current_page_item',
 				'label'   => __( 'This class is added to page menu items that correspond to the currently rendered static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_current_page_parent' => array(
-				'title'   => __( '.current_page_parent', self::$text_domain_slug ),
+				'title'   => '.current_page_parent',
 				'label'   => __( 'This class is added to page menu items that correspond to the hierarchical parent of the currently rendered static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_current_page_ancestor' => array(
-				'title'   => __( '.current_page_ancestor', self::$text_domain_slug ),
+				'title'   => '.current_page_ancestor',
 				'label'   => __( 'This class is added to page menu items that correspond to a hierarchical ancestor of the currently rendered static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_current_type_any_ancestor' => array(
-				'title'   => __( '.current-{type}-ancestor', self::$text_domain_slug ),
+				'title'   => '.current-{type}-ancestor',
 				'label'   => __( 'This class is added to menu items that correspond to a hierachical ancestor of the currently rendered type, where {type} corresponds to the the value used for .menu-item-type-{type}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'4'
 			),
 			'pwpm_print_current_type_any_parent' => array(
-				'title'   => __( '.current-{type}-parent', self::$text_domain_slug ),
+				'title'   => '.current-{type}-parent',
 				'label'   => __( 'This class is added to menu items that correspond to the hierachical parent of the currently rendered type, where {type} corresponds to the the value used for .menu-item-type-{type}.', self::$text_domain_slug ),
 				'section' => $section_suffix.'3'
 			),
 			'pwpm_print_menu_item' => array(
-				'title'   => __( '.menu-item', self::$text_domain_slug ),
+				'title'   => '.menu-item',
 				'label'   => __( 'This class is added to every menu item.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_home' => array(
-				'title'   => __( '.menu-item-home', self::$text_domain_slug ),
+				'title'   => '.menu-item-home',
 				'label'   => __( 'This class is added to menu items that correspond to the site front page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'5'
 			),
 			'pwpm_print_menu_item_id_as_class' => array(
-				'title'   => __( '.menu-item-{id}', self::$text_domain_slug ),
+				'title'   => '.menu-item-{id}',
 				'label'   => __( 'This class with the item id is added to every menu item.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_any' => array(
-				'title'   => __( '.menu-item-object-{object}', self::$text_domain_slug ),
+				'title'   => '.menu-item-object-{object}',
 				'label'   => __( 'This class is added to every menu item, where {object} is either a post type or a taxonomy.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_category' => array(
-				'title'   => __( '.menu-item-object-category', self::$text_domain_slug ),
+				'title'   => '.menu-item-object-category',
 				'label'   => __( 'This class is added to menu items that correspond to a category.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_custom' => array(
-				'title'   => __( '.menu-item-object-{custom}', self::$text_domain_slug ),
+				'title'   => '.menu-item-object-{custom}',
 				'label'   => __( 'This class is added to menu items that correspond to a custom post type or a custom taxonomy.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_page' => array(
-				'title'   => __( '.menu-item-object-page', self::$text_domain_slug ),
+				'title'   => '.menu-item-object-page',
 				'label'   => __( 'This class is added to menu items that correspond to static pages.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_object_tag' => array(
-				'title'   => __( '.menu-item-object-tag', self::$text_domain_slug ),
+				'title'   => '.menu-item-object-tag',
 				'label'   => __( 'This class is added to menu items that correspond to a tag.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_type_post_type' => array(
-				'title'   => __( '.menu-item-type-post_type', self::$text_domain_slug ),
+				'title'   => '.menu-item-type-post_type',
 				'label'   => __( 'This class is added to menu items that correspond to post types, i.e. static pages or custom post types.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_menu_item_type_taxonomy' => array(
-				'title'   => __( '.menu-item-type-taxonomy', self::$text_domain_slug ),
+				'title'   => '.menu-item-type-taxonomy',
 				'label'   => __( 'This class is added to menu items that correspond to taxonomies, i.e. categories, tags, or custom taxonomies.', self::$text_domain_slug ),
 				'section' => $section_suffix.'6'
 			),
 			'pwpm_print_page_item' => array(
-				'title'   => __( '.page_item', self::$text_domain_slug ),
+				'title'   => '.page_item',
 				'label'   => __( 'This class is added to page menu items that correspond to a static page.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			),
 			'pwpm_print_page_item_id' => array(
-				'title'   => __( '.page-item-{id}', self::$text_domain_slug ),
+				'title'   => '.page-item-{id}',
 				'label'   => __( 'This class is added to page menu items that correspond to a static page, where ID is the static page ID.', self::$text_domain_slug ),
 				'section' => $section_suffix.'7'
 			)
@@ -481,7 +480,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_1 () {
+	public static function print_section_1 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control some basic settings.', self::$text_domain_slug ) );
 	}
 
@@ -491,7 +490,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_2 () {
+	public static function print_section_2 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control the CSS class Wordpress adds to the current menu item.', self::$text_domain_slug ) );
 	}
 
@@ -501,7 +500,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_3 () {
+	public static function print_section_3 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control the CSS classes Wordpress adds to the hierarchical parent of the current menu item.', self::$text_domain_slug ) );
 	}
 
@@ -511,7 +510,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_4 () {
+	public static function print_section_4 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control the CSS classes Wordpress adds to the hierarchical anchestors of the current menu item.', self::$text_domain_slug ) );
 	}
 
@@ -521,7 +520,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_5 () {
+	public static function print_section_5 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control the CSS class Wordpress adds to the menu item of the front page.', self::$text_domain_slug ) );
 	}
 
@@ -531,7 +530,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_6 () {
+	public static function print_section_6 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control all other classes Wordpress adds to menu items.', self::$text_domain_slug ) );
 	}
 
@@ -541,8 +540,8 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_7 () {
-		printf( "<p>%s</p>\n", __( 'In this section you control the CSS classes Wordpress adds to items in a page menu via wp_page_nav(). Menues via wp_nav_menu() only have this classes if the backward compatibility option is checked.', self::$text_domain_slug ) );
+	public static function print_section_7 () {
+		printf( "<p>%s</p>\n", __( 'In this section you control the CSS classes Wordpress adds to items in a page menu via wp_page_nav(). Menus via wp_nav_menu() only have this classes if the backward compatibility option is checked.', self::$text_domain_slug ) );
 	}
 
 	/**
@@ -551,7 +550,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_8 () {
+	public static function print_section_8 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control the CSS class Wordpress adds to the hierarchical parent of the current item in a page menu.', self::$text_domain_slug ) );
 	}
 
@@ -561,7 +560,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_9 () {
+	public static function print_section_9 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control the CSS class Wordpress adds to the hierarchical anchestors of the current item in a page menu.', self::$text_domain_slug ) );
 	}
 
@@ -571,7 +570,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function print_section_10 () {
+	public static function print_section_10 () {
 		printf( "<p>%s</p>\n", __( 'In this section you control all other classes Wordpress adds to items in a page menu.', self::$text_domain_slug ) );
 	}
 
@@ -584,7 +583,7 @@ class Purify_WP_Menues {
 	* @uses    $stored_settings
 	* @uses    $settings_db_slug
 	*/
-	public function print_option_checkbox ( $args ) {
+	public static function print_option_checkbox ( $args ) {
 		$options = self::$stored_settings;
 		$id = $args['id'];
 		printf( '<label for="%s"><input type="checkbox" id="%s" name="%s[%s]" value="1" ', $id, $id, self::$settings_db_slug, $id );
@@ -600,7 +599,7 @@ class Purify_WP_Menues {
 	* @uses    $settings_db_slug
 	* @uses    $wpdb
 	*/
-	public function delete_settings () {
+	public static function delete_settings () {
 		// remove settings
 		delete_option( self::$settings_db_slug ); 
 		// clean DB
@@ -615,7 +614,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $plugin_version
 	*/
-	public function apply_admin_css () {
+	public static function apply_admin_css () {
 		// register CSS only to this plugin's option page
 		wp_register_style( 'pwpm-plugin-page-css', plugins_url( 'css/settings.css', __FILE__ ), array(), self::$plugin_version, 'all' );
 		// enqueue
@@ -628,7 +627,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $options_pages_slug
 	*/
-	public function load_admin_css () {
+	public static function load_admin_css () {
 		add_action( 'admin_print_styles-' . self::$options_pages_slug, array( __CLASS__, 'apply_admin_css' ) );
 	}
 	// end CSS addition
@@ -639,7 +638,7 @@ class Purify_WP_Menues {
 	* @since   1.0
 	* @uses    $text_domain_slug
 	*/
-	public function load_language () {
+	public static function load_language () {
 		load_plugin_textdomain( self::$text_domain_slug, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 	// end load language
@@ -651,7 +650,7 @@ class Purify_WP_Menues {
 	*/
 
 	/**
-	* Clean the CSS classes of items in navigation menues
+	* Clean the CSS classes of items in navigation menus
 	*
 	* @since   1.0
 	*
@@ -660,7 +659,7 @@ class Purify_WP_Menues {
 	* @uses    purify_page_item_classes()
 	* @return  array|string             Empty string if param is not an array, else the array with strings for the menu item
 	*/
-	public function purify_menu_item_classes ( $css_classes ) {
+	public static function purify_menu_item_classes ( $css_classes ) {
 		if ( ! is_array( $css_classes ) ) {
 			return '';
 		}
@@ -808,19 +807,19 @@ class Purify_WP_Menues {
 	} // end purify_menu_item_classes()
 
 	/**
-	* Clean the id attribute of items in navigation menues
+	* Clean the id attribute of items in navigation menus
 	*
 	* @since   1.0
 	*
 	* @uses    $stored_settings
 	* @return  string                     Empty string if param should not be returned, else the param itself
 	*/
-	public function purify_menu_item_id () {
+	public static function purify_menu_item_id () {
 		return '';
 	} // end purify_menu_item_id()
 
 	/**
-	* Clean the CSS classes of items in page menues
+	* Clean the CSS classes of items in page menus
 	*
 	* @since   1.0
 	*
@@ -828,7 +827,7 @@ class Purify_WP_Menues {
 	* @uses    $stored_settings
 	* @return  array|string             Empty string if param is not an array, else the array with strings for the menu item
 	*/
-	public function purify_page_item_classes( $css_classes ) {
+	public static function purify_page_item_classes( $css_classes ) {
 		if ( ! is_array( $css_classes ) ) {
 			return '';
 		}
@@ -882,9 +881,9 @@ class Purify_WP_Menues {
 		return array_intersect( $css_classes, $classes );
 	} // end purify_page_item_classes()
 
-} // end class Purify_WP_Menues()
+} // end class Purify_WP_Menus()
 
-$class_name = 'Purify_WP_Menues';
+$class_name = 'Purify_WP_Menus';
 // function on activating the plugin
 register_activation_hook( __FILE__,  array( $class_name, 'init_activation' ) );
 // function on deleting the plugin

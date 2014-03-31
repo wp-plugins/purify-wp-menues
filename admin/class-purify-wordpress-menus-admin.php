@@ -411,12 +411,7 @@ class Purify_WordPress_Menus_Admin {
 					// title of the form field
 					$title,
 					// callback function to render the form field
-					function( $args ){
-						$id = $args[ 'id' ];
-						printf( '<label for="%s"><input type="checkbox" id="%s" name="%s[%s]" value="1" ', $id, $id, $args[ 'db_slug' ], $id );
-						print $args[ 'html' ];
-						printf( ' /> %s</label>', $args[ 'label' ] );
-					},
+					array( __CLASS__, 'print_option_checkbox' ),
 					// menu page on which to display this field for do_settings_section()
 					self::$main_options_page_slug,
 					// section where the form field appears
@@ -447,6 +442,22 @@ class Purify_WordPress_Menus_Admin {
 		); // end register_setting()
 		
 	} // end register_options()
+
+	/**
+	* Print the option checkbox
+	*
+	* @since   1.0
+	*
+	* @param   array    $args    Strings accessible by key
+	* @uses    $stored_settings
+	* @uses    $settings_db_slug
+	*/
+	public static function print_option_checkbox ( $args ) {
+		$id = $args[ 'id' ];
+		printf( '<label for="%s"><input type="checkbox" id="%s" name="%s[%s]" value="1" ', $id, $id, $args[ 'db_slug' ], $id );
+		print $args[ 'html' ];
+		printf( ' /> %s</label>', $args[ 'label' ] );
+	}
 
 	/**
 	* Check and return correct values for the settings

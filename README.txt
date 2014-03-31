@@ -1,30 +1,30 @@
 === Purify WordPress Menus ===
 Contributors: Hinjiriyo
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SBF76TCGTRNX2
 Tags: plugin, navigation, menu, menus, navigation menus, page menus, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
-Tested up to: 3.8
-Stable tag: 1.3
+Tested up to: 3.8.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SBF76TCGTRNX2
 
-The plugin 'Purify WordPress Menus' slims down the HTML output of WordPress menus to only the CSS classes and ID attributes you want.
+Slim down the HTML code of WordPress menus to only the CSS classes and ID attributes your theme needs to improve page speed
 
 == Description ==
 
 = Effects =
 
-* 'Purify WordPress Menus' refines the HTML output of both navigation menus and page menus. It filters the output of the WordPress core functions wp_nav_menu() and wp_page_menu().
-* This plugin deletes the CSS classes you do not need in a navigation menu and page menu. It slims down the HTML code of Wordpress menus to the only neccessary CSS classes you want for your theme.
+* This plugin deletes the CSS classes you do not need in a navigation menu and page menu. It slims down the HTML code of Wordpress menus to the only neccessary CSS classes you want for your theme. This results in less HTML code and so in higher page speed.
 * This plugin deletes the ID attribute of each menu item. In most cases the ID of every menu item is not needed.
 * Menu items which are parents of the current item will not be classified as ancestors additionally. The output of class="current-menu-ancestor current-menu-parent" is reduced to class="current-menu-parent".
 * This plugin filters out the old CSS classes of page menus in navigation menus. This does not effect the output in page menus.
+* This plugin filters the output of the WordPress core functions wp_nav_menu() and wp_page_menu().
 * The visual appereance of menus in the frontend remains unchanged in most cases. If you should see an undesirable visual effect to the menus in your theme you can activate the needed CSS classes on the plugin's options page.
 
 = Highly Configurable =
 
 * The default setting is to output only the CSS classes for the current menu item.
-* You can select and deselect in detail any CSS class Wordpress would add to menu items via wp_nav_menu() and wp_page_menu() and you need for your theme.
+* You can select and deselect in detail any CSS class and you need for your theme.
 * You can control whether the id attribute of each navigation menu item is printed out or not.
 * You can control whether parent items will be additionally classified as ancestors item or not. You can activate to print out both classes on parent items or just parents classes.
 * You can control whether navigation menus will be additionally classified with the older page menu classes for compatibility or not.
@@ -86,6 +86,7 @@ Actually these languages are supported:
 
 * English
 * German
+* Spanish
 
 Further translations are welcome. If you have one please send me an email.
 
@@ -100,6 +101,13 @@ If you want to contribute a translation of the plugin in your language it would 
 3. The third screen shot shows where you can find the link to the plugin's option page in the german version of WordPress.
 
 == Changelog ==
+
+= 2.0 =
+* Rebuilded fundamentally to improve the plugin's performance at frontend runtime and your page speed.
+* In spite of that no worry about your plugin's settings: They stay untouched and will continue to work
+* Better understandable grouping of the options on the options page
+* Slight grafic design changes
+* Updated translations and *.pot file
 
 = 1.3 =
 * Added 'static' property to some functions to prevent warnings at strict error level
@@ -121,6 +129,10 @@ If you want to contribute a translation of the plugin in your language it would 
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 2.0 =
+* Fundamental rebuild for higher page speed
+* More understandable grouping of the options
 
 = 1.3 =
 * Added slight corrections

@@ -1,0 +1,18 @@
+/* This stylesheet is used to style the admin option form of the plugin. */
+/*
+ * Elements
+ *
+ */
+.wrap .form-table {
+	margin-bottom: 2.5em;
+}
+ 
+/* Footer */
+#th_footer .th_content dl {
+	padding: 0;
+}
+#th_footer .th_content li, 
+#th_footer .th_content dd {
+    margin-bottom: 10px;
+    margin-left: 0;
+}

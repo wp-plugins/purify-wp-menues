@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: plugin, navigation, menu, menus, navigation menus, page menus, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 2.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,9 @@ If you want to contribute a translation of the plugin in your language it would 
 
 == Changelog ==
 
+= 2.0.1 =
+* Fixed a coding error
+
 = 2.0 =
 * Rebuilded fundamentally to improve the plugin's performance at frontend runtime and your page speed.
 * In spite of that no worry about your plugin's settings: They stay untouched and will continue to work
@@ -129,6 +132,9 @@ If you want to contribute a translation of the plugin in your language it would 
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+* Fixed a coding error
 
 = 2.0 =
 * Fundamental rebuild for higher page speed

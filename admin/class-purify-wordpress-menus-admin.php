@@ -402,7 +402,7 @@ class Purify_WordPress_Menus_Admin {
 			foreach ( $section_values[ 'options' ] as $option_name => $option_values ) {
 				$title = $option_values[ 'title' ];
 				$type = 'checkbox';
-				$html = isset( self::$stored_settings[ $option_name ] ) ? checked( '1', self::$stored_settings[ $option_name ], false ) : '';
+				$sub_html = isset( self::$stored_settings[ $option_name ] ) ? checked( '1', self::$stored_settings[ $option_name ], false ) : '';
 
 				// register the option
 				add_settings_field(
@@ -411,7 +411,7 @@ class Purify_WordPress_Menus_Admin {
 					// title of the form field
 					$title,
 					// callback function to render the form field
-					array( __CLASS__, 'print_option_checkbox' ),
+					array( __CLASS__, 'print_option' ),
 					// menu page on which to display this field for do_settings_section()
 					self::$main_options_page_slug,
 					// section where the form field appears
@@ -423,7 +423,7 @@ class Purify_WordPress_Menus_Admin {
 						'type' => $type,
 						'options' => self::$stored_settings,
 						'db_slug' => self::$settings_db_slug,
-						'html' => $html,
+						'html' => sprintf( '<input type="checkbox" id="%s" name="%s[%s]" value="1" %s /><label for="%s">%s</label>', $option_name, self::$settings_db_slug, $option_name, $sub_html, $option_name, $option_values[ 'label' ] ),
 					)
 				); // end add_settings_field()
 
@@ -444,19 +444,13 @@ class Purify_WordPress_Menus_Admin {
 	} // end register_options()
 
 	/**
-	* Print the option checkbox
+	* Print the option
 	*
 	* @since   1.0
 	*
-	* @param   array    $args    Strings accessible by key
-	* @uses    $stored_settings
-	* @uses    $settings_db_slug
 	*/
-	public static function print_option_checkbox ( $args ) {
-		$id = $args[ 'id' ];
-		printf( '<label for="%s"><input type="checkbox" id="%s" name="%s[%s]" value="1" ', $id, $id, $args[ 'db_slug' ], $id );
+	public static function print_option ( $args ) {
 		print $args[ 'html' ];
-		printf( ' /> %s</label>', $args[ 'label' ] );
 	}
 
 	/**

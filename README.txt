@@ -3,8 +3,8 @@ Contributors: Hinjiriyo
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SBF76TCGTRNX2
 Tags: plugin, navigation, menu, menus, navigation menus, page menus, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
-Tested up to: 3.8.1
-Stable tag: 2.1
+Tested up to: 3.8.2
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,24 +12,50 @@ Slim down the HTML code of WordPress menus to only the CSS classes and ID attrib
 
 == Description ==
 
-= Effects =
+= Less code, higher page speed =
 
-* This plugin deletes the CSS classes you do not need in a navigation menu and page menu. It slims down the HTML code of Wordpress menus to the only neccessary CSS classes you want for your theme. This results in less HTML code and so in higher page speed.
-* This plugin deletes the ID attribute of each menu item. In most cases the ID of every menu item is not needed.
-* Menu items which are parents of the current item will not be classified as ancestors additionally. The output of class="current-menu-ancestor current-menu-parent" is reduced to class="current-menu-parent".
-* This plugin filters out the old CSS classes of page menus in navigation menus. This does not effect the output in page menus.
-* This plugin filters the output of the WordPress core functions wp_nav_menu() and wp_page_menu().
-* The visual appereance of menus in the frontend remains unchanged in most cases. If you should see an undesirable visual effect to the menus in your theme you can activate the needed CSS classes on the plugin's options page.
+This plugin deletes the CSS classes you do not need in a navigation menu and page menu. It slims down the HTML code of Wordpress menus to the only neccessary CSS classes you want for your theme. This results in less HTML code and so in higher page speed.
 
-= Highly Configurable =
+= No undesiderable visual effects =
 
-* The default setting is to output only the CSS classes for the current menu item.
-* You can select and deselect in detail any CSS class and you need for your theme.
-* You can control whether the id attribute of each navigation menu item is printed out or not.
-* You can control whether parent items will be additionally classified as ancestors item or not. You can activate to print out both classes on parent items or just parents classes.
-* You can control whether navigation menus will be additionally classified with the older page menu classes for compatibility or not.
-* If you deactivate the plugin, your settings remains.
-* If you delete the plugin via the WordPress 'Plugin' menu, your settings will be deleted, too. No useless option remains in the WordPress database.
+The visual appereance of menus in the frontend remains unchanged in most cases. If you should see an undesirable visual effect to the menus in your theme you can activate the needed CSS classes on the plugin's options page.
+
+= Deactivate it and keep your settings =
+
+If you deactivate the plugin, your settings remains. If you activate the plugin again your last settings will be used. You do not need to go over all settings again.
+
+= Residue-free deletion =
+
+If you delete the plugin via the WordPress 'Plugin' menu, your settings will be deleted, too. No useless option remains in the WordPress database.
+
+= Default setting: Mark only the current menu item =
+
+The default setting is to output only the CSS classes for the current menu item.
+
+= Stops displaying CSS classes of parents and ancestors of menu items =
+
+Menu items which are parents of the current item will not be classified as ancestors additionally. The output of class="current-menu-ancestor current-menu-parent" is reduced to class="current-menu-parent".
+
+= Stops displaying CSS classes of outdated page menus =
+
+This plugin filters out the old CSS classes of page menus in navigation menus. Using the WordPress menu configurator the page menu classes are not necessary anymore.
+
+= Stops displaying #menu-{id} =
+
+This plugin deletes the ID attribute of each menu item. In most cases the ID of every menu item is not needed.
+
+= Uses WordPress standard functions =
+
+This plugin hooks into the WordPress core functions wp_nav_menu() and wp_page_menu(). It changed the results of both functions to the settings you chose.
+
+= Switch on and off every CSS menu item class =
+
+You can:
+
+* select and deselect in detail every CSS menu item class the WordPress core functions wp_nav_menu() and wp_page_menu() generate.
+* control whether the id attribute of each navigation menu item is printed out or not.
+* control whether parent items will be additionally classified as ancestors item or not. You can activate to print out both classes on parent items or just parents classes.
+* control whether navigation menus will be additionally classified with the older page menu classes for compatibility or not.
 
 == Installation ==
 
@@ -102,6 +128,11 @@ If you want to contribute a translation of the plugin in your language it would 
 
 == Changelog ==
 
+= 2.1.1 =
+* Tested successfully with WordPress 3.8.2
+* Some refactoring and fixed a typo
+* Updated translations and *.pot file
+
 = 2.1 =
 * Some refactoring and tests passed
 
@@ -135,6 +166,9 @@ If you want to contribute a translation of the plugin in your language it would 
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+Tested with WordPress 3.8.2 and corrected a typo
 
 = 2.1 =
 * Some refactoring and tests passed

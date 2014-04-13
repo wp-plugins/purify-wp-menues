@@ -18,7 +18,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '2.0';
+	const VERSION = '2.1.1';
 
 	/**
 	 * Lowest Wordpress version to run with this plugin
@@ -28,6 +28,16 @@ class Purify_WordPress_Menus {
 	 * @var     string
 	 */
 	const REQUIRED_WP_VERSION = '3.0'; // because of wp menu functions
+
+	/**
+	 * Name of this plugin.
+	 *
+	 *
+	 * @since    2.1.1
+	 *
+	 * @var      string
+	 */
+	protected static $plugin_name = 'Purify WordPress Menus';
 
 	/**
 	 * Unique identifier for this plugin.
@@ -80,33 +90,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var      array
 	 */
-	protected static $default_settings = array(
-		'pwpm_print_menu_item_id' => 0,
-		'pwpm_backward_compatibility_with_wp_page_menu' => 0,
-		'pwpm_do_not_print_parent_as_ancestor' => 0,
-		'pwpm_print_current_menu_ancestor' => 0,
-		'pwpm_print_current_menu_item' => 1,
-		'pwpm_print_current_menu_parent' => 0,
-		'pwpm_print_current_object_any_parent' => 0,
-		'pwpm_print_current_object_any_ancestor' => 0,
-		'pwpm_print_current_page_item' => 1,
-		'pwpm_print_current_page_parent' => 0,
-		'pwpm_print_current_page_ancestor' => 0,
-		'pwpm_print_current_type_any_parent' => 0,
-		'pwpm_print_current_type_any_ancestor' => 0,
-		'pwpm_print_menu_item' => 0,
-		'pwpm_print_menu_item_home' => 0,
-		'pwpm_print_menu_item_id_as_class' => 0,
-		'pwpm_print_menu_item_object_category' => 0,
-		'pwpm_print_menu_item_object_page' => 0,
-		'pwpm_print_menu_item_object_tag' => 0,
-		'pwpm_print_menu_item_object_custom' => 0,
-		'pwpm_print_menu_item_object_any' => 0,
-		'pwpm_print_menu_item_type_post_type' => 0,
-		'pwpm_print_menu_item_type_taxonomy' => 0,
-		'pwpm_print_page_item' => 0,
-		'pwpm_print_page_item_id' => 0,
-	);
+	protected static $default_settings = array();
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
 	 * and styles.
@@ -140,6 +124,17 @@ class Purify_WordPress_Menus {
 				delete_transient( self::$plugin_slug );
 			}
 		}
+	}
+
+	/**
+	 * Return the plugin name.
+	 *
+	 * @since    2.1.1
+	 *
+	 * @return    Plugin name variable.
+	 */
+	public function get_plugin_name() {
+		return self::$plugin_name;
 	}
 
 	/**
@@ -372,6 +367,35 @@ class Purify_WordPress_Menus {
 			// use WordPress standard message for this case
 			wp_die( __( 'You do not have sufficient permissions to manage options for this site.' ) );
 		}
+		
+		// define the default settings
+		self::$default_settings = array(
+			'pwpm_print_menu_item_id' => 0,
+			'pwpm_backward_compatibility_with_wp_page_menu' => 0,
+			'pwpm_do_not_print_parent_as_ancestor' => 0,
+			'pwpm_print_current_menu_ancestor' => 0,
+			'pwpm_print_current_menu_item' => 1,
+			'pwpm_print_current_menu_parent' => 0,
+			'pwpm_print_current_object_any_parent' => 0,
+			'pwpm_print_current_object_any_ancestor' => 0,
+			'pwpm_print_current_page_item' => 1,
+			'pwpm_print_current_page_parent' => 0,
+			'pwpm_print_current_page_ancestor' => 0,
+			'pwpm_print_current_type_any_parent' => 0,
+			'pwpm_print_current_type_any_ancestor' => 0,
+			'pwpm_print_menu_item' => 0,
+			'pwpm_print_menu_item_home' => 0,
+			'pwpm_print_menu_item_id_as_class' => 0,
+			'pwpm_print_menu_item_object_category' => 0,
+			'pwpm_print_menu_item_object_page' => 0,
+			'pwpm_print_menu_item_object_tag' => 0,
+			'pwpm_print_menu_item_object_custom' => 0,
+			'pwpm_print_menu_item_object_any' => 0,
+			'pwpm_print_menu_item_type_post_type' => 0,
+			'pwpm_print_menu_item_type_taxonomy' => 0,
+			'pwpm_print_page_item' => 0,
+			'pwpm_print_page_item_id' => 0,
+		);
 		
 		// store default values in the db as a single and serialized entry
 		add_option( self::$settings_db_slug, self::$default_settings );
@@ -643,8 +667,8 @@ class Purify_WordPress_Menus {
 	 */
 	public function display_activation_message () {
 		$url  = esc_url( admin_url( sprintf( 'options-general.php?page=%s', self::$plugin_slug ) ) );
-		$link = sprintf( '<a href="%s">%s =&gt; Purify WordPress Menus</a>', $url, __( 'Settings' ) );
-		$msg  = sprintf( __( 'Welcome to Purify WordPress Menus! You can find the plugin at %s.', self::$plugin_slug ), $link );
+		$link = sprintf( '<a href="%s">%s =&gt; %s</a>', $url, __( 'Settings' ), self::$plugin_name );
+		$msg  = sprintf( __( 'Welcome to %s! You can find the plugin at %s.', self::$plugin_slug ), self::$plugin_name, $link );
 		$html = sprintf( '<div class="updated"><p>%s</p></div>', $msg );
 		print $html;
 	}

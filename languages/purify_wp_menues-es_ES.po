@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Purify WordPress Menus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-31 13:40+0100\n"
-"PO-Revision-Date: 2014-03-31 13:41+0100\n"
+"PO-Revision-Date: 2014-04-13 14:22+0100\n"
 "Last-Translator: Martin Stehle <m.stehle@gmx.de>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -22,13 +22,8 @@ msgstr ""
 
 # @ purify_wp_menus
 #: ../admin/class-purify-wordpress-menus-admin.php:207
-msgid "Purify WordPress Menus Options"
-msgstr "Opciones de Purify WP Menus"
-
-# @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:208
-msgid "Purify WordPress Menus"
-msgstr "Purify WordPress Menus"
+msgid "Options"
+msgstr "Opciones"
 
 # @ purify_wp_menus
 #: ../admin/class-purify-wordpress-menus-admin.php:250
@@ -392,8 +387,5 @@ msgstr ""
 
 #: ../public/class-purify-wordpress-menus.php:647
 #, php-format
-msgid "Welcome to Purify WordPress Menus! You can find the plugin at %s."
+msgid "Welcome to %s! You can find the plugin at %s."
 msgstr ""
-
-#~ msgid "You do not have sufficient permissions to access this page."
-#~ msgstr "No tienes suficientes permisos para acceder a esta p&aacute;gina."

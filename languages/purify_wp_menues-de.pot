@@ -19,12 +19,7 @@ msgstr ""
 
 # @ purify_wp_menus
 #: ../admin/class-purify-wordpress-menus-admin.php:207
-msgid "Purify WordPress Menus Options"
-msgstr ""
-
-# @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:208
-msgid "Purify WordPress Menus"
+msgid "Options"
 msgstr ""
 
 # @ purify_wp_menus
@@ -263,5 +258,5 @@ msgstr ""
 
 #: ../public/class-purify-wordpress-menus.php:647
 #, php-format
-msgid "Welcome to Purify WordPress Menus! You can find the plugin at %s."
+msgid "Welcome to %s! You can find the plugin at %s."
 msgstr ""

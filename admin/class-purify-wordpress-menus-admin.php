@@ -34,6 +34,15 @@ class Purify_WordPress_Menus_Admin {
 	protected static $plugin_screen_hook_suffix = null;
 
 	/**
+	 * Name of this plugin.
+	 *
+	 * @since    2.1.1
+	 *
+	 * @var      string
+	 */
+	protected static $plugin_name = null;
+
+	/**
 	 * Unique identifier for this plugin.
 	 *
 	 * It is the same as in class Purify_WordPress_Menus
@@ -103,8 +112,9 @@ class Purify_WordPress_Menus_Admin {
 	 */
 	private function __construct() {
 
-		// Call $plugin_slug from public plugin class and get some properties
+		// Call variables from public plugin class.
 		$plugin = Purify_WordPress_Menus::get_instance();
+		self::$plugin_name = $plugin->get_plugin_name();
 		self::$plugin_slug = $plugin->get_plugin_slug();
 		self::$settings_db_slug = $plugin->get_settings_db_slug();
 		
@@ -204,8 +214,8 @@ class Purify_WordPress_Menus_Admin {
 
 		// Add a settings page for this plugin to the Settings menu.
 		self::$plugin_screen_hook_suffix = add_options_page(
-			__( 'Purify WordPress Menus Options', self::$plugin_slug ),
-			__( 'Purify WordPress Menus', self::$plugin_slug ),
+			sprintf( '%s %s', self::$plugin_name, __( 'Options', self::$plugin_slug ) ),
+			self::$plugin_name,
 			'manage_options',
 			self::$plugin_slug,
 			array( $this, 'main' )

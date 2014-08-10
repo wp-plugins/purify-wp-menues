@@ -18,16 +18,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '2.1.1';
-
-	/**
-	 * Lowest Wordpress version to run with this plugin
-	 *
-	 * @since    2.0
-	 *
-	 * @var     string
-	 */
-	const REQUIRED_WP_VERSION = '3.0'; // because of wp menu functions
+	protected $plugin_version = '2.2';
 
 	/**
 	 * Name of this plugin.
@@ -37,7 +28,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var      string
 	 */
-	protected static $plugin_name = 'Purify WordPress Menus';
+	protected $plugin_name = 'Purify WordPress Menus';
 
 	/**
 	 * Unique identifier for this plugin.
@@ -51,7 +42,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var      string
 	 */
-	protected static $plugin_slug = 'purify_wp_menues';
+	protected $plugin_slug = 'purify_wp_menues';
 
 	/**
 	 * Instance of this class.
@@ -70,7 +61,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var      string
 	 */
-	protected static $settings_db_slug = 'purify_wp_menu_options_set';
+	protected $settings_db_slug = 'purify_wp_menu_options_set';
 
 	/**
 	 * Stored settings in an array
@@ -80,17 +71,8 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var      array
 	 */
-	protected static $stored_settings = array();
+	protected $stored_settings = array();
 
-	/**
-	 * Initial and default settings for the plugin's start
-	 *
-	 *
-	 * @since    2.0
-	 *
-	 * @var      array
-	 */
-	protected static $default_settings = array();
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
 	 * and styles.
@@ -100,28 +82,28 @@ class Purify_WordPress_Menus {
 	private function __construct() {
 
 		// Load plugin text domain
-		add_action( 'init', array( __CLASS__, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
 		// Activate plugin when new blog is added
-		add_action( 'wpmu_new_blog', array( __CLASS__, 'activate_new_site' ) );
+		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
 		// load options once. If the options are not in the DB return an empty array
-		self::$stored_settings = get_option( self::$settings_db_slug );
+		$this->stored_settings = $this->get_stored_settings();
 		if ( ! is_admin() ) {
-			add_filter( 'nav_menu_css_class', array( __CLASS__, 'purify_menu_item_classes' ), 10, 1 );
-			add_filter( 'page_css_class',     array( __CLASS__, 'purify_page_item_classes' ), 10, 1 );
-			if ( 0 == self::$stored_settings[ 'pwpm_print_menu_item_id' ] ) {
-				add_filter( 'nav_menu_item_id', array( __CLASS__, 'purify_menu_item_id' ), 10, 0 );
+			add_filter( 'nav_menu_css_class', array( $this, 'purify_menu_item_classes' ), 10, 1 );
+			add_filter( 'page_css_class',     array( $this, 'purify_page_item_classes' ), 10, 1 );
+			if ( 0 == $this->stored_settings[ 'pwpm_print_menu_item_id' ] ) {
+				add_filter( 'nav_menu_item_id', array( $this, 'purify_menu_item_id' ), 10, 0 );
 			}
 		}
 
 		// hook on displaying a message after plugin activation
 		// if single activation via link or bulk activation
 		if ( isset( $_GET[ 'activate' ] ) or isset( $_GET[ 'activate-multi' ] ) ) {
-			$plugin_was_activated = get_transient( self::$plugin_slug );
+			$plugin_was_activated = get_transient( $this->plugin_slug );
 			if ( false !== $plugin_was_activated ) {
 				add_action( 'admin_notices', array( $this, 'display_activation_message' ) );
-				delete_transient( self::$plugin_slug );
+				delete_transient( $this->plugin_slug );
 			}
 		}
 	}
@@ -134,7 +116,7 @@ class Purify_WordPress_Menus {
 	 * @return    Plugin name variable.
 	 */
 	public function get_plugin_name() {
-		return self::$plugin_name;
+		return $this->plugin_name;
 	}
 
 	/**
@@ -145,7 +127,18 @@ class Purify_WordPress_Menus {
 	 * @return    Plugin slug variable.
 	 */
 	public function get_plugin_slug() {
-		return self::$plugin_slug;
+		return $this->plugin_slug;
+	}
+
+	/**
+	 * Return the plugin version.
+	 *
+	 * @since    2.2
+	 *
+	 * @return    Plugin version variable.
+	 */
+	public function get_plugin_version() {
+		return $this->plugin_version;
 	}
 
 	/**
@@ -156,7 +149,7 @@ class Purify_WordPress_Menus {
 	 * @return    Plugin slug variable.
 	 */
 	public function get_settings_db_slug() {
-		return self::$settings_db_slug;
+		return $this->settings_db_slug;
 	}
 
 	/**
@@ -188,20 +181,24 @@ class Purify_WordPress_Menus {
 	 */
 	public static function activate( $network_wide ) {
 
+		$plugin_slug = 'purify_wp_menues'; // defined here because of non-object context when calling the function
+		// Lowest Wordpress version to run with this plugin
+		$required_wp_version = '3.0'; // because of wp menu functions
+
 		// check minimum version
-		if ( ! version_compare( $GLOBALS['wp_version'], self::REQUIRED_WP_VERSION, '>=' ) ) {
+		if ( ! version_compare( $GLOBALS['wp_version'], $required_wp_version, '>=' ) ) {
 			// deactivate plugin
 			deactivate_plugins( plugin_basename( __FILE__ ), false, is_network_admin() );
 			// load language file for a message in the language of the WP installation
-			self::load_plugin_textdomain();
+			load_plugin_textdomain( $plugin_slug, false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
 			// stop WP request and display the message with backlink. Is there a proper way than wp_die()?
 			wp_die( 
 				// message in browser viewport
 				sprintf( 
 					'<p>%s</p>', 
 					sprintf( 
-						__( 'The plugin requires WordPress version %s or higher. Therefore, WordPress did not activate it. If you want to use this plugin update the Wordpress files to the latest version.', self::$plugin_slug ), 
-						self::REQUIRED_WP_VERSION 
+						__( 'The plugin requires WordPress version %s or higher. Therefore, WordPress did not activate it. If you want to use this plugin update the Wordpress files to the latest version.', $plugin_slug ), 
+						$required_wp_version 
 					)
 				),
 				// title in title tag
@@ -257,7 +254,7 @@ class Purify_WordPress_Menus {
 			if ( $network_wide ) {
 
 				// Get all blog ids
-				$blog_ids = self::get_blog_ids();
+				$blog_ids = $this->get_blog_ids();
 
 				foreach ( $blog_ids as $blog_id ) {
 
@@ -329,7 +326,7 @@ class Purify_WordPress_Menus {
 		// store default settings
 		self::set_default_settings();
 		// store the flag into the db to trigger the display of a message after activation
-		set_transient( self::$plugin_slug, '1', 60 );
+		set_transient( 'purify_wp_menues', '1', 60 );
 	}
 
 	/**
@@ -346,12 +343,12 @@ class Purify_WordPress_Menus {
 	 *
 	 * @since    2.0
 	 */
-	public static function load_plugin_textdomain() {
+	public function load_plugin_textdomain() {
 
-		#$domain = self::$plugin_slug;
+		#$domain = $this->plugin_slug;
 		#$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 		#load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( self::$plugin_slug, false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
+		load_plugin_textdomain( $this->plugin_slug, false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
 
 	}
 
@@ -363,47 +360,47 @@ class Purify_WordPress_Menus {
 	 * @since    2.0
 	 */
 	private static function set_default_settings() {
-		if ( ! current_user_can( 'manage_options' ) )  {
-			// use WordPress standard message for this case
-			wp_die( __( 'You do not have sufficient permissions to manage options for this site.' ) );
-		}
-		
-		// define the default settings
-		self::$default_settings = array(
-			'pwpm_print_menu_item_id' => 0,
-			'pwpm_backward_compatibility_with_wp_page_menu' => 0,
-			'pwpm_do_not_print_parent_as_ancestor' => 0,
-			'pwpm_print_current_menu_ancestor' => 0,
-			'pwpm_print_current_menu_item' => 1,
-			'pwpm_print_current_menu_parent' => 0,
-			'pwpm_print_current_object_any_parent' => 0,
-			'pwpm_print_current_object_any_ancestor' => 0,
-			'pwpm_print_current_page_item' => 1,
-			'pwpm_print_current_page_parent' => 0,
-			'pwpm_print_current_page_ancestor' => 0,
-			'pwpm_print_current_type_any_parent' => 0,
-			'pwpm_print_current_type_any_ancestor' => 0,
-			'pwpm_print_menu_item' => 0,
-			'pwpm_print_menu_item_home' => 0,
-			'pwpm_print_menu_item_id_as_class' => 0,
-			'pwpm_print_menu_item_object_category' => 0,
-			'pwpm_print_menu_item_object_page' => 0,
-			'pwpm_print_menu_item_object_tag' => 0,
-			'pwpm_print_menu_item_object_custom' => 0,
-			'pwpm_print_menu_item_object_any' => 0,
-			'pwpm_print_menu_item_type_post_type' => 0,
-			'pwpm_print_menu_item_type_taxonomy' => 0,
-			'pwpm_print_page_item' => 0,
-			'pwpm_print_page_item_id' => 0,
-		);
-		
-		// store default values in the db as a single and serialized entry
-		add_option( self::$settings_db_slug, self::$default_settings );
+
+		$db_slug = 'purify_wp_menu_options_set'; // todo: get the value from $settings_db_slug both in object and non-object context
+		// check if there are already stored settings under the option's database slug
+		if ( false === get_option( $db_slug, false ) ) {
+			// store default values in the db as a single and serialized entry
+			add_option( 
+				$db_slug, 
+				array(
+					'pwpm_print_menu_item_id' => 0,
+					'pwpm_backward_compatibility_with_wp_page_menu' => 0,
+					'pwpm_do_not_print_parent_as_ancestor' => 0,
+					'pwpm_print_current_menu_ancestor' => 0,
+					'pwpm_print_current_menu_item' => 1,
+					'pwpm_print_current_menu_parent' => 0,
+					'pwpm_print_current_object_any_parent' => 0,
+					'pwpm_print_current_object_any_ancestor' => 0,
+					'pwpm_print_current_page_item' => 1,
+					'pwpm_print_current_page_parent' => 0,
+					'pwpm_print_current_page_ancestor' => 0,
+					'pwpm_print_current_type_any_parent' => 0,
+					'pwpm_print_current_type_any_ancestor' => 0,
+					'pwpm_print_menu_item' => 0,
+					'pwpm_print_menu_item_home' => 0,
+					'pwpm_print_menu_item_id_as_class' => 0,
+					'pwpm_print_menu_item_object_category' => 0,
+					'pwpm_print_menu_item_object_page' => 0,
+					'pwpm_print_menu_item_object_tag' => 0,
+					'pwpm_print_menu_item_object_custom' => 0,
+					'pwpm_print_menu_item_object_any' => 0,
+					'pwpm_print_menu_item_type_post_type' => 0,
+					'pwpm_print_menu_item_type_taxonomy' => 0,
+					'pwpm_print_page_item' => 0,
+					'pwpm_print_page_item_id' => 0,
+				)
+			);
+		} // if ( false )
 		
 		/** 
 		* to do: finish check
 		* // test if the options are stored successfully
-		* if ( false === get_option( self::$settings_db_slug ) ) {
+		* if ( false === get_option( $this->settings_db_slug ) ) {
 		* 	// warn if there is something wrong with the options
 		* 	something like: printf( '<div class="error"><p>%s</p></div>', __( 'The settings for plugin Purify WP Menus are not stored in the database. Is the database server ok?', 'purify_wp_menus' ) );
 		* }
@@ -417,15 +414,15 @@ class Purify_WordPress_Menus {
 	 */
 	public function get_stored_settings() {
 		// try to load current settings. If they are not in the DB return set default settings
-		$stored_settings = get_option( self::$settings_db_slug, array() );
+		$stored_settings = get_option( $this->settings_db_slug, false );
 		// if empty array set and store default values
-		if ( empty( $stored_settings ) ) {
+		if ( false === $stored_settings ) {
 			$this->set_default_settings();
 		}
 		// try to load current settings again. Now there should be the data
-		$stored_settings = get_option( self::$settings_db_slug );
+		$stored_settings = get_option( $this->settings_db_slug );
 		
-		return $stored_settings;
+		return $stored_settings; # todo: return $this->sanitize_options( $stored_settings );
 	}
 	
 	/**
@@ -438,14 +435,14 @@ class Purify_WordPress_Menus {
 	* @uses    purify_page_item_classes()
 	* @return  array|string             Empty string if param is not an array, else the array with strings for the menu item
 	*/
-	public static function purify_menu_item_classes ( $css_classes ) {
+	public function purify_menu_item_classes ( $css_classes ) {
 		if ( ! is_array( $css_classes ) ) {
 			return '';
 		}
 
 		$item_is_parent = false;
 		$classes = array();
-		$options = self::$stored_settings;
+		$options = $this->stored_settings;
 
 		foreach ( $css_classes as $class ) {
 
@@ -473,7 +470,7 @@ class Purify_WordPress_Menus {
 				continue;
 			}
 
-			// This class is added to menu items that correspond to static pages. 
+			// This class is added to menu items that correspond to pages. 
 			if ( $options['pwpm_print_menu_item_object_page'] && 'menu-item-object-page' == $class ) {
 				$classes[] = 'menu-item-object-page';
 				continue;
@@ -492,7 +489,7 @@ class Purify_WordPress_Menus {
 				continue;
 			}
 
-			// This class is added to menu items that correspond to post types { i.e. static pages or custom post types. 
+			// This class is added to menu items that correspond to post types { i.e. pages or custom post types. 
 			if ( $options['pwpm_print_menu_item_type_post_type'] && 'menu-item-type-post_type' == $class ) {
 				$classes[] = 'menu-item-type-post_type';
 				continue;
@@ -577,7 +574,7 @@ class Purify_WordPress_Menus {
 		// Backward Compatibility with wp_page_menu() 
 		// the following classes are added to maintain backward compatibility with the wp_page_menu() function output
 		if ( $options['pwpm_backward_compatibility_with_wp_page_menu'] ) {
-			$classes = array_merge( $classes, self::purify_page_item_classes( $css_classes ) );
+			$classes = array_merge( $classes, $this->purify_page_item_classes( $css_classes ) );
 		}
 
 		// Returns the new set of css classes for the item
@@ -593,7 +590,7 @@ class Purify_WordPress_Menus {
 	* @uses    $stored_settings
 	* @return  string                     Empty string if param should not be returned, else the param itself
 	*/
-	public static function purify_menu_item_id () {
+	public function purify_menu_item_id () {
 		return '';
 	} // end purify_menu_item_id()
 
@@ -606,42 +603,42 @@ class Purify_WordPress_Menus {
 	* @uses    $stored_settings
 	* @return  array|string             Empty string if param is not an array, else the array with strings for the menu item
 	*/
-	public static function purify_page_item_classes( $css_classes ) {
+	public function purify_page_item_classes( $css_classes ) {
 		if ( ! is_array( $css_classes ) ) {
 			return '';
 		}
 
-		$options = self::$stored_settings;
+		$options = $this->stored_settings;
 		$item_is_parent = false;
 		$classes = array();
 
 		foreach ( $css_classes as $class ) {
-			// This class is added to menu items that correspond to a static page. 
+			// This class is added to menu items that correspond to a page. 
 			if ( $options['pwpm_print_page_item'] && 'page_item' == $class ) {
 				$classes[] = 'page_item';
 				continue;
 			}
 
-			// This class is added to menu items that correspond to a static page, where $ID is the static page ID. 
+			// This class is added to menu items that correspond to a page, where $ID is the page ID. 
 			if ( $options['pwpm_print_page_item_id'] && preg_match( '/page-item-[0-9]+/', $class, $matches ) ) {
 				$classes[] = $matches[0];
 				continue;
 			}
 
-			// This class is added to menu items that correspond to the currently rendered static page. 
+			// This class is added to menu items that correspond to the currently rendered page. 
 			if ( $options['pwpm_print_current_page_item'] && 'current_page_item' == $class ) {
 				$classes[] = 'current_page_item';
 				continue;
 			}
 
-			// This class is added to menu items that correspond to the hierarchical parent of the currently rendered static page. 
+			// This class is added to menu items that correspond to the hierarchical parent of the currently rendered page. 
 			if ( $options['pwpm_print_current_page_parent'] && 'current_page_parent' == $class ) {
 				$classes[] = 'current_page_parent';
 				$item_is_parent = true;
 				continue;
 			}
 
-			// This class is added to menu items that correspond to a hierarchical ancestor of the currently rendered static page. 
+			// This class is added to menu items that correspond to a hierarchical ancestor of the currently rendered page. 
 			if ( $options['pwpm_print_current_page_ancestor'] && 'current_page_ancestor' == $class ) {
 				$classes[] = 'current_page_ancestor';
 				// last, no continue;
@@ -666,9 +663,9 @@ class Purify_WordPress_Menus {
 	 * @since    2.0
 	 */
 	public function display_activation_message () {
-		$url  = esc_url( admin_url( sprintf( 'options-general.php?page=%s', self::$plugin_slug ) ) );
-		$link = sprintf( '<a href="%s">%s =&gt; %s</a>', $url, __( 'Settings' ), self::$plugin_name );
-		$msg  = sprintf( __( 'Welcome to %s! You can find the plugin at %s.', self::$plugin_slug ), self::$plugin_name, $link );
+		$url  = esc_url( admin_url( sprintf( 'options-general.php?page=%s', $this->plugin_slug ) ) );
+		$link = sprintf( '<a href="%s">%s =&gt; %s</a>', $url, __( 'Settings' ), $this->plugin_name );
+		$msg  = sprintf( __( 'Welcome to %s! You can find the plugin at %s.', $this->plugin_slug ), $this->plugin_name, $link );
 		$html = sprintf( '<div class="updated"><p>%s</p></div>', $msg );
 		print $html;
 	}
@@ -678,7 +675,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @since    2.0
 	 */
-	public static function dump ( $v, $die = false ) {
+	public function dump ( $v, $die = false ) {
 		print "<pre>";
 		var_dump( $v );
 		print "</pre>";

@@ -18,7 +18,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var     string
 	 */
-	protected $plugin_version = '2.2';
+	protected $plugin_version = '2.2.1';
 
 	/**
 	 * Name of this plugin.

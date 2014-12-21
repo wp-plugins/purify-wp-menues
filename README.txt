@@ -3,8 +3,8 @@ Contributors: Hinjiriyo
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SBF76TCGTRNX2
 Tags: plugin, navigation, menu, menus, navigation menus, page menus, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 2.2.1
+Tested up to: 4.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,9 @@ If you want to contribute a translation of the plugin in your language it would 
 
 == Changelog ==
 
+= 2.2.2 =
+Successfully tested with WordPress 4.1, especially with the revised filters 'nav_menu_css_class' and 'nav_menu_item_id'
+
 = 2.2.1 =
 Successfully tested with WordPress 4.0
 
@@ -174,6 +177,9 @@ Successfully tested with WordPress 4.0
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 2.2.2 =
+Successfully tested with WordPress 4.1
 
 = 2.2.1 =
 Successfully tested with WordPress 4.0

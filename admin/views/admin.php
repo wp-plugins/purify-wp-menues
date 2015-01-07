@@ -14,6 +14,7 @@
 
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 	<p><?php _e( 'Slim down the HTML code of WordPress menus to only the CSS classes and ID attributes your theme needs to improve page speed', $this->plugin_slug ); ?>.</p>
+	<p><?php _e( 'Your custom CSS classes as given in the menu settings at each menu item stay untouched.', $this->plugin_slug ); ?>.</p>
 <div class="th_wrapper">
 	<div id="th_main">
 		<div class="th_content">

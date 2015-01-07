@@ -18,7 +18,7 @@ class Purify_WordPress_Menus {
 	 *
 	 * @var     string
 	 */
-	protected $plugin_version = '2.2.1';
+	protected $plugin_version = '2.3';
 
 	/**
 	 * Name of this plugin.
@@ -90,7 +90,7 @@ class Purify_WordPress_Menus {
 		// load options once. If the options are not in the DB return an empty array
 		$this->stored_settings = $this->get_stored_settings();
 		if ( ! is_admin() ) {
-			add_filter( 'nav_menu_css_class', array( $this, 'purify_menu_item_classes' ), 10, 1 );
+			add_filter( 'nav_menu_css_class', array( $this, 'purify_menu_item_classes' ), 10, 2 );
 			add_filter( 'page_css_class',     array( $this, 'purify_page_item_classes' ), 10, 1 );
 			if ( 0 == $this->stored_settings[ 'pwpm_print_menu_item_id' ] ) {
 				add_filter( 'nav_menu_item_id', array( $this, 'purify_menu_item_id' ), 10, 0 );
@@ -309,9 +309,7 @@ class Purify_WordPress_Menus {
 		global $wpdb;
 
 		// get an array of blog ids
-		$sql = "SELECT blog_id FROM $wpdb->blogs
-			WHERE archived = '0' AND spam = '0'
-			AND deleted = '0'";
+		$sql = "SELECT blog_id FROM $wpdb->blogs WHERE archived = '0' AND spam = '0' AND deleted = '0'";
 
 		return $wpdb->get_col( $sql );
 
@@ -435,7 +433,7 @@ class Purify_WordPress_Menus {
 	* @uses    purify_page_item_classes()
 	* @return  array|string             Empty string if param is not an array, else the array with strings for the menu item
 	*/
-	public function purify_menu_item_classes ( $css_classes ) {
+	public function purify_menu_item_classes ( $css_classes, $menu_item ) {
 		if ( ! is_array( $css_classes ) ) {
 			return '';
 		}
@@ -576,9 +574,15 @@ class Purify_WordPress_Menus {
 		if ( $options['pwpm_backward_compatibility_with_wp_page_menu'] ) {
 			$classes = array_merge( $classes, $this->purify_page_item_classes( $css_classes ) );
 		}
+		
+		// Add custom CSS classes if available
+		$custom_css_classes = (array) get_post_meta( $menu_item->ID, '_menu_item_classes', true );
 
-		// Returns the new set of css classes for the item
-		return array_intersect( $css_classes, $classes );
+		// Get the new set of css classes for the item
+		$menu_item_classes = array_intersect( $css_classes, $classes );
+		
+		// Return the css classes with custom css classes
+		return array_merge( $menu_item_classes, $custom_css_classes );
 
 	} // end purify_menu_item_classes()
 

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: plugin, navigation, menu, menus, navigation menus, page menus, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,12 @@ Slim down the HTML code of WordPress menus to only the CSS classes and ID attrib
 = Less code, higher page speed =
 
 This plugin deletes the CSS classes you do not need in a navigation menu and page menu. It slims down the HTML code of Wordpress menus to the only neccessary CSS classes you want for your theme. This results in less HTML code and so in higher page speed.
+
+= What users said =
+
+* **Number 7** in [13 Excellent Free WordPress Widgets for Menus](http://cssclick.com/wordpress/free-wordpress-widgets-for-menus/) by mike on November 24, 2014
+* **Number 6** in [13 Great Free HTML Widgets for WordPress](http://wpaisle.com/wordpress-widgets/free-html-widgets-for-wordpress/) by sam on August 27, 2014
+* **Number 8** in [10 Magnificent Free Menus Widgets for WordPress](http://creativevore.com/wordpress/free-menus-widgets-for-wordpress/) by jatin on July 26, 2014
 
 = No undesiderable visual effects =
 
@@ -128,6 +134,10 @@ If you want to contribute a translation of the plugin in your language it would 
 
 == Changelog ==
 
+= 2.3 =
+* Improved: Custom CSS classes keep untouched
+* Updated translations and *.pot file
+
 = 2.2.2 =
 Successfully tested with WordPress 4.1, especially with the revised filters 'nav_menu_css_class' and 'nav_menu_item_id'
 
@@ -177,6 +187,9 @@ Successfully tested with WordPress 4.0
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 2.3 =
+Improved: Custom CSS classes keep untouched
 
 = 2.2.2 =
 Successfully tested with WordPress 4.1

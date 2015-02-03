@@ -1,22 +1,23 @@
 <?php
+
 /**
- * @package   Purify_WordPress_Menus
- * @author    Martin Stehle <m.stehle@gmx.de>
- * @license   GPL-2.0+
- * @link      http://wordpress.org/plugins/purify-wp-menues/
- * @copyright 2014 
+ * The plugin bootstrap file
+ *
+ * @link              http://stehle-internet.de/
+ * @since             3.0
+ * @package           Hinjipwpm
  *
  * @wordpress-plugin
- * Plugin Name:      Purify WordPress Menus
- * Plugin URI:       http://wordpress.org/plugins/purify-wp-menues/
- * Description:      Slim down the HTML code of WordPress menus to only the CSS classes and ID attributes your theme needs to improve page speed
- * Version:          2.3
- * Author:           Martin Stehle
- * Author URI:       http://stehle-internet.de/
- * Text Domain:      purify_wp_menues
- * License:          GPL-2.0+
- * License URI:      http://www.gnu.org/licenses/gpl-2.0.txt
- * Domain Path:      /languages
+ * Plugin Name:       Purify WordPress Menus
+ * Plugin URI:        https://wordpress.org/plugins/purify-wp-menues/
+ * Description:       Slim down the HTML code of WordPress menus to only the CSS classes and ID attributes your theme needs to improve page speed
+ * Version:           3.0
+ * Author:            Martin Stehle
+ * Author URI:        http://stehle-internet.de/
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       hinjipwpm
+ * Domain Path:       /languages
  */
 
 // If this file is called directly, abort.
@@ -24,38 +25,46 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/*----------------------------------------------------------------------------*
- * Public-Facing Functionality
- *----------------------------------------------------------------------------*/
-
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-purify-wordpress-menus.php' );
-
-/*
- * Register hooks that are fired when the plugin is activated or deactivated.
- * When the plugin is deleted, the uninstall.php file is loaded.
+/**
+ * The code that runs during plugin activation.
+ * This action is documented in includes/class-hinjipwpm-activator.php
  */
-register_activation_hook( __FILE__, array( 'Purify_WordPress_Menus', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Purify_WordPress_Menus', 'deactivate' ) );
+function activate_hinjipwpm() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-hinjipwpm-activator.php';
+	Hinjipwpm_Activator::activate();
+}
 
-add_action( 'plugins_loaded', array( 'Purify_WordPress_Menus', 'get_instance' ) );
-
-/*----------------------------------------------------------------------------*
- * Dashboard and Administrative Functionality
- *----------------------------------------------------------------------------*/
-
-/*
- * If you want to include Ajax within the dashboard, change the following
- * conditional to:
- *
- * if ( is_admin() ) {
- *   ...
- * }
- *
- * The code below is intended to to give the lightest footprint possible.
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-hinjipwpm-deactivator.php
  */
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+function deactivate_hinjipwpm() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-hinjipwpm-deactivator.php';
+	Hinjipwpm_Deactivator::deactivate();
+}
 
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-purify-wordpress-menus-admin.php' );
-	add_action( 'plugins_loaded', array( 'Purify_WordPress_Menus_Admin', 'get_instance' ) );
+register_activation_hook( __FILE__, 'activate_hinjipwpm' );
+register_deactivation_hook( __FILE__, 'deactivate_hinjipwpm' );
+
+/**
+ * The core plugin class that is used to define internationalization,
+ * dashboard-specific hooks, and public-facing site hooks.
+ */
+require plugin_dir_path( __FILE__ ) . 'includes/class-hinjipwpm.php';
+
+/**
+ * Begins execution of the plugin.
+ *
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ * @since    3.0
+ */
+function run_hinjipwpm() {
+
+	$plugin = new Hinjipwpm();
+	$plugin->run();
 
 }
+run_hinjipwpm();

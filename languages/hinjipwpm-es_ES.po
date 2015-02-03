@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Purify WordPress Menus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07 20:00+0100\n"
-"PO-Revision-Date: 2015-01-07 20:05+0100\n"
+"POT-Creation-Date: 2015-02-01 17:32+0100\n"
+"PO-Revision-Date: 2015-02-01 17:36+0100\n"
 "Last-Translator: Martin Stehle <m.stehle@gmx.de>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,30 +15,24 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
 "X-Textdomain-Support: yes\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-# @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:227
-msgid "Options"
-msgstr "Opciones"
+#: ../admin/class-hinjipwpm-admin.php:206
+#, php-format
+msgid "Welcome to %s! You can find the plugin at %s."
+msgstr ""
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:245
-#: ../public/class-purify-wordpress-menus.php:671
-msgid "Settings"
-msgstr "Opciones Especiales"
-
-# @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:270
+#: ../admin/class-hinjipwpm-admin.php:268
 msgid "Current Page Navigation Menu Items"
 msgstr ""
 "Elementos actuales del Men&uacute; de Navegaci&oacute;n de P&aacute;gina"
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:271
+#: ../admin/class-hinjipwpm-admin.php:269
 msgid ""
 "In this section you control the CSS class Wordpress adds to the current menu "
 "item."
@@ -47,7 +41,7 @@ msgstr ""
 "elemento actual del men&uacute;."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:275
+#: ../admin/class-hinjipwpm-admin.php:273
 msgid ""
 "This class is added to menu items that correspond to the currently rendered "
 "page."
@@ -56,7 +50,7 @@ msgstr ""
 "p&aacute;gina actualmente mostrada."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:279
+#: ../admin/class-hinjipwpm-admin.php:277
 msgid ""
 "This class is added to page menu items that correspond to the currently "
 "rendered page."
@@ -65,12 +59,12 @@ msgstr ""
 "p&aacute;gina actualmente mostrada."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:284
+#: ../admin/class-hinjipwpm-admin.php:282
 msgid "General Menu Items"
 msgstr "General Elementos del Men&uacute;"
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:285
+#: ../admin/class-hinjipwpm-admin.php:283
 msgid ""
 "In this section you control some general classes Wordpress adds to menu "
 "items."
@@ -79,26 +73,26 @@ msgstr ""
 "elementos de men&uacute;."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:289
+#: ../admin/class-hinjipwpm-admin.php:287
 msgid "This class is added to every menu item."
 msgstr "Esta clase se agrega a todos los elementos de men&uacute;."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:293
+#: ../admin/class-hinjipwpm-admin.php:291
 msgid "This class is added to page menu items that correspond to a page."
 msgstr ""
 "Esta clase se agrega a los elementos de men&uacute; que correspondan a la "
 "p&aacute;gina"
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:297
+#: ../admin/class-hinjipwpm-admin.php:295
 msgid "This class with the item id is added to every menu item."
 msgstr ""
 "Esta clase con el ID del elemento se agrega a todos los elementos de "
 "men&uacute;."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:301
+#: ../admin/class-hinjipwpm-admin.php:299
 msgid ""
 "This class is added to page menu items that correspond to a page, where ID "
 "is the page ID."
@@ -108,7 +102,7 @@ msgstr ""
 "p&aacute;gina est&aacute;tica."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:305
+#: ../admin/class-hinjipwpm-admin.php:303
 msgid ""
 "This class is added to menu items that correspond to the site front page."
 msgstr ""
@@ -116,7 +110,7 @@ msgstr ""
 "p&aacute;gina frontal."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:309
+#: ../admin/class-hinjipwpm-admin.php:307
 msgid ""
 "The id of the menu item is added to every menu item of navigation menus."
 msgstr ""
@@ -124,13 +118,13 @@ msgstr ""
 "men&uacute;s de navegaci&oacute;n"
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:314
+#: ../admin/class-hinjipwpm-admin.php:312
 msgid "Current Page Parent Menu Items"
 msgstr ""
 "Elementos del Men&uacute; de Navegaci&oacute;n de la P&aacute;gina Padre"
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:315
+#: ../admin/class-hinjipwpm-admin.php:313
 msgid ""
 "In this section you control the CSS classes Wordpress adds to the "
 "hierarchical parent of the current menu item."
@@ -139,7 +133,7 @@ msgstr ""
 "del elemento actual del men&uacute;."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:319
+#: ../admin/class-hinjipwpm-admin.php:317
 msgid ""
 "This class is added to menu items that correspond to the hierarchical parent "
 "of the currently rendered page."
@@ -148,7 +142,7 @@ msgstr ""
 "p&aacute;gina padre de la actualmente mostrada."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:323
+#: ../admin/class-hinjipwpm-admin.php:321
 msgid ""
 "This class is added to page menu items that correspond to the hierarchical "
 "parent of the currently rendered page."
@@ -157,7 +151,7 @@ msgstr ""
 "p&aacute;gina padre de la actualmente mostrada."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:327
+#: ../admin/class-hinjipwpm-admin.php:325
 msgid ""
 "This class is added to menu items that correspond to the hierachical parent "
 "of the currently rendered object, where {object} corresponds to the the "
@@ -168,7 +162,7 @@ msgstr ""
 "utilizado por .menu-item-{object}."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:331
+#: ../admin/class-hinjipwpm-admin.php:329
 msgid ""
 "This class is added to menu items that correspond to the hierachical parent "
 "of the currently rendered type, where {type} corresponds to the the value "
@@ -179,13 +173,13 @@ msgstr ""
 "utilizado por .menu-item-type-{type}."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:336
+#: ../admin/class-hinjipwpm-admin.php:334
 msgid "Current Page Ancestor Menu Items"
 msgstr ""
 "Elementos del Men&uacute; de Navegaci&oacute;n de la P&aacute;gina Superior"
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:337
+#: ../admin/class-hinjipwpm-admin.php:335
 msgid ""
 "In this section you control the CSS classes Wordpress adds to the "
 "hierarchical anchestors of the current menu item."
@@ -194,7 +188,7 @@ msgstr ""
 "ancestros del elemento actual del men&uacute;."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:341
+#: ../admin/class-hinjipwpm-admin.php:339
 msgid ""
 "This class is added to menu items that correspond to a hierarchical ancestor "
 "of the currently rendered page."
@@ -203,7 +197,7 @@ msgstr ""
 "la p&aacute;gina mostrada actualmente."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:345
+#: ../admin/class-hinjipwpm-admin.php:343
 msgid ""
 "This class is added to page menu items that correspond to a hierarchical "
 "ancestor of the currently rendered page."
@@ -212,7 +206,7 @@ msgstr ""
 "la p&aacute;gina mostrada actualmente."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:349
+#: ../admin/class-hinjipwpm-admin.php:347
 msgid ""
 "This class is added to menu items that correspond to a hierachical ancestor "
 "of the currently rendered object, where {object} corresponds to the the "
@@ -223,7 +217,7 @@ msgstr ""
 "valor utilizado por .menu-item-{object}."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:353
+#: ../admin/class-hinjipwpm-admin.php:351
 msgid ""
 "This class is added to menu items that correspond to a hierachical ancestor "
 "of the currently rendered type, where {type} corresponds to the the value "
@@ -234,12 +228,21 @@ msgstr ""
 "utilizado por .menu-item-type-{type}."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:358
+#: ../admin/class-hinjipwpm-admin.php:355
+msgid ""
+"This class is added to menu items that correspond to a hierachical ancestor "
+"of the currently taxonomy."
+msgstr ""
+"Esta clase se agrega a los elementos de menu que correspondan al ancestro de "
+"la taxonomy mostrada actualmente."
+
+# @ purify_wp_menus
+#: ../admin/class-hinjipwpm-admin.php:360
 msgid "All Other Navigation Menu Items"
 msgstr "Otros Elementos de Men&uacute; de Navegaci&oacute;n"
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:359
+#: ../admin/class-hinjipwpm-admin.php:361
 msgid ""
 "In this section you control some all other classes Wordpress adds to menu "
 "items."
@@ -248,28 +251,28 @@ msgstr ""
 "a los elementos de men&uacute;."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:363
+#: ../admin/class-hinjipwpm-admin.php:365
 msgid "This class is added to menu items that correspond to pages."
 msgstr ""
 "Esta clase se agrega a los elementos de men&uacute; que correspondan a "
 "p&aacute;ginas est&aacute;ticas."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:367
+#: ../admin/class-hinjipwpm-admin.php:369
 msgid "This class is added to menu items that correspond to a category."
 msgstr ""
 "Esta clase se agrega a los elementos de men&uacute; que correspondan a una "
 "categor&iacute;a."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:371
+#: ../admin/class-hinjipwpm-admin.php:373
 msgid "This class is added to menu items that correspond to a tag."
 msgstr ""
 "Esta clase se agrega a los elementos de men&uacute; que correspondan a una "
 "etiqueta (tag)."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:375
+#: ../admin/class-hinjipwpm-admin.php:377
 msgid ""
 "This class is added to every menu item, where {object} is either a post type "
 "or a taxonomy."
@@ -278,7 +281,7 @@ msgstr ""
 "un tipo de post (post type) o un taxonomy."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:379
+#: ../admin/class-hinjipwpm-admin.php:381
 msgid ""
 "This class is added to menu items that correspond to a custom post type or a "
 "custom taxonomy."
@@ -287,7 +290,7 @@ msgstr ""
 "post type personalizado o un taxonomy personalizado."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:383
+#: ../admin/class-hinjipwpm-admin.php:385
 msgid ""
 "This class is added to menu items that correspond to post types, i.e. pages "
 "or custom post types."
@@ -296,7 +299,7 @@ msgstr ""
 "types, ejm. p&aacute;ginas est&aacute;ticas o custom post types."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:387
+#: ../admin/class-hinjipwpm-admin.php:389
 msgid ""
 "This class is added to menu items that correspond to taxonomies, i.e. "
 "categories, tags, or custom taxonomies."
@@ -305,91 +308,91 @@ msgstr ""
 "categor&iacute;as, etiquetas (tags), o un taxonomy personalizado."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:392
+#: ../admin/class-hinjipwpm-admin.php:393
+msgid "This class is added to menu items that correspond to any other type."
+msgstr ""
+"Esta clase se agrega a los elementos de men&uacute; que correspondan a una "
+"type."
+
+# @ purify_wp_menus
+#: ../admin/class-hinjipwpm-admin.php:397
+msgid "This class is added to menu items that have sub menu items."
+msgstr ""
+
+# @ purify_wp_menus
+#: ../admin/class-hinjipwpm-admin.php:401
+msgid "This class is added to page menu items that have sub menu items."
+msgstr ""
+
+# @ purify_wp_menus
+#: ../admin/class-hinjipwpm-admin.php:406
 msgid "Special Settings"
 msgstr "Opciones Especiales"
 
 # @ purify_wp_menues
-#: ../admin/class-purify-wordpress-menus-admin.php:393
+#: ../admin/class-hinjipwpm-admin.php:407
 msgid "In this section you control some special settings."
 msgstr "En esta secci&oacute;n controlas las opciones especiales."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:396
+#: ../admin/class-hinjipwpm-admin.php:410
 msgid "Maintain backward compatibility with wp_page_menu()."
 msgstr "Mantener compatibilidad con wp_page_menu()."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:397
+#: ../admin/class-hinjipwpm-admin.php:411
 msgid "Adds the CSS classes of page menus to navigation menus."
 msgstr ""
 "Agrega las clases CSS de los men&uacute;s de p&aacute;ginas a los men&uacute;"
 "s de navegaci&oacute;n."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:400
+#: ../admin/class-hinjipwpm-admin.php:414
 msgid "Do not print parent as ancestor."
 msgstr "No imprimir al superior como ascendiente."
 
 # @ purify_wp_menus
-#: ../admin/class-purify-wordpress-menus-admin.php:401
+#: ../admin/class-hinjipwpm-admin.php:415
 msgid ""
 "Does not classified the menu item which is the current parent as anchestor."
 msgstr ""
 "No clasifica al elemento de men&uacute; actual si es el superior como "
 "ancestro."
 
-#: ../admin/views/admin.php:16
+#: ../admin/partials/hinjipwpm-admin-display.php:19
 msgid ""
 "Slim down the HTML code of WordPress menus to only the CSS classes and ID "
 "attributes your theme needs to improve page speed"
 msgstr ""
 
-#: ../admin/views/admin.php:17
+#: ../admin/partials/hinjipwpm-admin-display.php:20
 msgid ""
 "Your custom CSS classes as given in the menu settings at each menu item stay "
 "untouched."
 msgstr ""
 
-#: ../admin/views/admin.php:32
+#: ../admin/partials/hinjipwpm-admin-display.php:35
 msgid "Credits and informations"
 msgstr "Agradecimientos y notas"
 
-#: ../admin/views/admin.php:34
+#: ../admin/partials/hinjipwpm-admin-display.php:37
 msgid "Do you like the plugin?"
 msgstr ""
 
-#: ../admin/views/admin.php:35
+#: ../admin/partials/hinjipwpm-admin-display.php:38
 msgid "Rate it at wordpress.org!"
 msgstr ""
 
-#: ../admin/views/admin.php:36
+#: ../admin/partials/hinjipwpm-admin-display.php:39
 msgid "Do you need support or have an idea for the plugin?"
 msgstr ""
 
-#: ../admin/views/admin.php:37
+#: ../admin/partials/hinjipwpm-admin-display.php:40
 msgid ""
 "Post your questions and ideas about Purify WordPress Menus in the forum at "
 "wordpress.org!"
 msgstr ""
 
-#: ../admin/views/admin.php:38
+#: ../admin/partials/hinjipwpm-admin-display.php:41
 msgid "Special thanks for the fine style of the plugin go to"
-msgstr ""
-
-# @ purify_wp_menus
-#: ../public/class-purify-wordpress-menus.php:200
-#, php-format
-msgid ""
-"The plugin requires WordPress version %s or higher. Therefore, WordPress did "
-"not activate it. If you want to use this plugin update the Wordpress files "
-"to the latest version."
-msgstr ""
-"El plugin Purify Wordpress Menus requiere Wordpress versi&oacute;n %s o "
-"m&aacute;s reciente. Por ello, Wordpress no activ&oacute; el plugin. Si "
-"quieres utilizarlo, actualiza Wordpress a la &uacute;ltima versi&oacute;n."
-
-#: ../public/class-purify-wordpress-menus.php:672
-#, php-format
-msgid "Welcome to %s! You can find the plugin at %s."
 msgstr ""

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: plugin, navigation, menu, menus, navigation menus, page menus, navigation menu, page menu, wordpress, html, css, optimization, optimisation, slim html, purification
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.3
+Stable tag: 3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,7 @@ This plugin deletes the CSS classes you do not need in a navigation menu and pag
 
 = What users said =
 
+* **Number 1** in [Cool List of Free Navigation Menu WordPress Plugins](http://codeknows.com/inspiration/free-navigation-menu-wordpress-plugins/) by Inspiration on January 8, 2015
 * **Number 7** in [13 Excellent Free WordPress Widgets for Menus](http://cssclick.com/wordpress/free-wordpress-widgets-for-menus/) by mike on November 24, 2014
 * **Number 6** in [13 Great Free HTML Widgets for WordPress](http://wpaisle.com/wordpress-widgets/free-html-widgets-for-wordpress/) by sam on August 27, 2014
 * **Number 8** in [10 Magnificent Free Menus Widgets for WordPress](http://creativevore.com/wordpress/free-menus-widgets-for-wordpress/) by jatin on July 26, 2014
@@ -34,7 +35,7 @@ If you deactivate the plugin, your settings remains. If you activate the plugin 
 
 If you delete the plugin via the WordPress 'Plugin' menu, your settings will be deleted, too. No useless option remains in the WordPress database.
 
-= Default setting: Mark only the current menu item =
+= Default setting: Marks the current menu item only =
 
 The default setting is to output only the CSS classes for the current menu item.
 
@@ -58,9 +59,9 @@ This plugin hooks into the WordPress core functions wp_nav_menu() and wp_page_me
 
 You can:
 
-* select and deselect in detail every CSS menu item class the WordPress core functions wp_nav_menu() and wp_page_menu() generate.
-* control whether the id attribute of each navigation menu item is printed out or not.
-* control whether parent items will be additionally classified as ancestors item or not. You can activate to print out both classes on parent items or just parents classes.
+* select and deselect in detail every CSS menu item class the WordPress core functions wp_nav_menu() and wp_page_menu() generate
+* control whether the id attribute of each navigation menu item is printed out or not
+* control whether parent items will be additionally classified as ancestors item or not. You can activate to print out both classes on parent items or just parents classes
 * control whether navigation menus will be additionally classified with the older page menu classes for compatibility or not.
 
 == Installation ==
@@ -90,7 +91,7 @@ Yes, it does.
 
 Short answer: Normally not and if yes, you can take control of it.
 
-Long answer: The default settings are to output only the CSS class for the current active menu item. If the theme's CSS uses also the other CSS classes and/or item ID attribute you will notice some undesirable visual effects on menus. In this case just find out which classes and/or IDs the theme uses and activate them via the plugin's options page until the effects disappear.
+Long answer: The default settings print out only the CSS class for the current active menu item. If the theme's CSS uses also the other CSS classes and/or item ID attribute you will notice some undesirable visual effects on menus. In this case just find out which classes and/or IDs the theme uses and activate them via the plugin's options page until the effects disappear.
 
 = What are the default settings of this plugin? =
 
@@ -133,6 +134,18 @@ If you want to contribute a translation of the plugin in your language it would 
 3. The third screen shot shows where you can find the link to the plugin's option page in the german version of WordPress.
 
 == Changelog ==
+
+= 3.0 =
+* Rebuild fundamentally
+* Added option 'Current taxonomy ancestor'
+* Added option 'Any menu item object'
+* Added option 'Any menu item type'
+* Added option 'Menu item has children'
+* Added option 'Page menu item has children'
+* Revised option 'Menu item id as class'
+* Revised option 'Page item id as class'
+* Removed option 'Custom menu item object'
+* Updated translations and *.pot file
 
 = 2.3 =
 * Improved: Custom CSS classes keep untouched
@@ -187,6 +200,9 @@ Successfully tested with WordPress 4.0
 * The plugin was released initially.
 
 == Upgrade Notice ==
+
+= 3.0 =
+Rebuild fundamentally and enhanced with new options
 
 = 2.3 =
 Improved: Custom CSS classes keep untouched
